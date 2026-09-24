@@ -1,0 +1,19 @@
+# Transcrição de vídeo de terceiros (direitos autorais) — manter só local
+referencias/transcricao-video-*.txt
+
+# Dados brutos de terreno (grandes; baixar de novo com os scripts)
+*.tif
+*.npy
+*.raw
+
+# Unity (quando o projeto existir)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+*.csproj
+*.sln
+.vs/
