@@ -1,0 +1,4 @@
+// PROVISÓRIO — receitas placeholder, sem balanceamento. ticks: 20 ticks = 1 s.
+[
+  { "id": "smelt_iron", "input": "iron_ore", "inputCount": 1, "output": "iron_ingot", "outputCount": 1, "ticks": 60 }
+]

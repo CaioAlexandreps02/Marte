@@ -167,3 +167,23 @@ Fatia vertical de **1–2 h de jogo**, base da futura demo do Steam.
 
 **Sessão de design futura adicionada:**
 - [ ] **Recursos de Marte** — como funcionam na realidade (gelo, regolito, minerais, atmosfera de CO₂, percloratos etc.) e como traduzir pro jogo. Define a lista final de recursos do MVP.
+
+## Notas de design — Recursos (em aberto, 24/09/2026)
+
+> Base: [referencias/recursos-marte-pesquisa.md](referencias/recursos-marte-pesquisa.md). Sessão de recursos ainda vai fechar a lista.
+
+- **Gelo pode existir no jogo** mesmo não havendo gelo raso real em Jezero (licença de jogo, marcar como [JOGO]). Água também de argilas/sulfatos aquecidos e, estilo Perdido em Marte / Mars Direct, de hidrogênio trazido da Terra.
+- **Recursos onipresentes:** alguns recursos aparecem no mapa todo (como o ferro no Satisfactory). Na vida real o regolito tem 15–20% de óxidos de ferro em todo lugar.
+- **Nomes:** "Regolito" vai ser renomeado (a definir). "Areia de sílica" → **"Sílica"**.
+- **Metais:** Caio quer entender como funcionam pra definir a parte de metais (ferro, magnésio, alumínio, níquel, cobre…).
+- **Cheyava Falls** (possível sinal de vida antiga no Neretva Vallis, real): registrar como ideia de **missão futura** (ex: preservar ou minerar).
+- **Terraformação:** Caio quer entender a ciência a fundo e como reproduzir no jogo da melhor forma → sessão dedicada.
+- **Suprimentos da Terra:** usar o **Surviving Mars como referência** (fazer algo parecido).
+- **Itens de máquina removida caem no chão e ficam lá** (estilo Minecraft/Satisfactory), não somem.
+- **Água em duas frentes (aprovado como direção):** (1) **hidrogênio da Terra + CO₂ do ar** (Sabatier) → água + metano/combustível; (2) **gelo escondido em cavernas** (e locais especiais) como alternativa [JOGO].
+- **Alumínio:** meio-termo de energia (não tão caro quanto na vida real).
+- **Nome do regolito:** finalistas **Basalto** e **Solo Marciano** — decidir depois.
+- **Terraformação: parecida com o Surviving Mars** (parâmetros globais alimentados por construções e projetos especiais). Detalhar na sessão de terraformação.
+- **Usos dos metais (direção):** magnésio → drones e algumas peças de veículos, redutor pra fazer **silício** (com sílica) e **titânio**, e fertilizante (agricultura). Estrutura do domo: **aço** e/ou **alumínio** (definir).
+- **Aço = ferro + carbono**; carbono vem do CO₂ do ar ou dos carbonatos do delta (ambos reais em Jezero).
+- **Magnésio em mais de um lugar:** olivina no fundo da cratera **e** serpentina na borda (ambos reais). Nós submersos após a terraformação podem ser minerados com tecnologia de extração subaquática (a definir).

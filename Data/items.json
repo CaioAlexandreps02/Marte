@@ -1,0 +1,7 @@
+// PROVISÓRIO — placeholder até a sessão de design "Recursos de Marte" (D13).
+// Atenção: o save guarda itens pelo ÍNDICE nesta lista. Só adicione no fim.
+[
+  { "id": "regolith" },
+  { "id": "iron_ore" },
+  { "id": "iron_ingot" }
+]

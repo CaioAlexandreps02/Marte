@@ -14,6 +14,15 @@ referencias/transcricao-video-*.txt
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
-*.csproj
-*.sln
+Unity/*.csproj
+Unity/*.sln
 .vs/
+
+# Terreno: cache de download e saidas grandes (so metadata.json e preview.png entram no git)
+ferramentas/terreno/cache/
+ferramentas/terreno/saida/*
+!ferramentas/terreno/saida/metadata.json
+!ferramentas/terreno/saida/preview.png
+
+# .NET
+[Bb]in/

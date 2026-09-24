@@ -1,0 +1,11 @@
+// PROVISÓRIO — stats placeholder, sem balanceamento. 20 ticks = 1 s.
+// Miner:    ticks = ticks por item;          capacity = buffer de saída.
+// Conveyor: ticks = ticks pra cruzar 1 célula; capacity = itens por célula.
+// Smelter:  recipe = receita fixa;            capacity = buffer de entrada e de saída (cada).
+// Storage:  capacity = total de itens.
+[
+  { "type": "Miner",    "ticks": 40, "capacity": 5 },
+  { "type": "Conveyor", "ticks": 10, "capacity": 4 },
+  { "type": "Smelter",  "capacity": 10, "recipe": "smelt_iron" },
+  { "type": "Storage",  "capacity": 100 }
+]
