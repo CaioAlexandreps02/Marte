@@ -58,4 +58,7 @@ Unity/               Projeto Unity 6.3 URP — só apresentação, input, câmer
 
 ## Git
 - **Nunca commitar ou dar push sem aprovação explícita do Caio.**
-- Remote: `CaioAlexandreps02/Marte` no GitHub. **Neste PC** (24/09/2026): nenhuma chave SSH entra como CaioAlexandreps02 (`id_ed25519` = MeuJudi, `vpt_github_new` = vptvolei-team, padrão do `~/.ssh/config`) → usar **HTTPS** com login do Caio pelo Git Credential Manager. Não há `user.name`/`user.email` global: o autor dos commits precisa ser informado pelo Caio.
+- Remote: `CaioAlexandreps02/Marte` no GitHub. **Neste PC** a conta do Caio usa a chave **`~/.ssh/id_ed25519_caio`** (as outras chaves são de outras contas: `id_ed25519` = MeuJudi, `vpt_github_new` = vptvolei-team, padrão do `~/.ssh/config`). O `origin` local está sem URL, então enviar pela URL:
+  `GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -i ~/.ssh/id_ed25519_caio -F /dev/null" git push git@github.com:CaioAlexandreps02/Marte.git main`
+- Não há `user.name`/`user.email` global: commitar com `git -c user.name="Caio" -c user.email="caioporto100@gmail.com" commit ...`.
+- Mapa gerado (tiles, ~1,4 GB) não vai para o Git: zip em Release do GitHub (`ferramentas/terreno/cache/marte-terreno-*.zip`).

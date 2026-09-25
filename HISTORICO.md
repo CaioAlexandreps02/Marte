@@ -54,5 +54,5 @@
 - Água ainda reflete o céu azul antigo; aviso do limite é provisório (OnGUI).
 - Streaming não foi testado em alta velocidade com o editor em foco (só a largada).
 - 14% (16×16) / ~67% (28×25) do mapa vem de dado de 20 m: mais liso, sem pedras pequenas.
-- Remoto `origin` do Git estava sem endereço nesta máquina, e nenhuma chave SSH local entra como
-  CaioAlexandreps02 (ver CLAUDE.md → Git).
+- Git: criada a chave `~/.ssh/id_ed25519_caio` (conta CaioAlexandreps02) e enviados os commits; o `origin` local
+  continua sem URL (ver CLAUDE.md → Git). Release com o zip do mapa: pendente.
