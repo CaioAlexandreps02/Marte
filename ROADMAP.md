@@ -85,6 +85,12 @@ Ordem sugerida pelo que bloqueia a implementação primeiro:
 7. **Art bible** — antes da fase 7.
 8. **Nome do jogo** — candidatos citados: Solum Mars / New Mars / Terra Mars.
 
+## Sessões de design novas (D17, 25/09/2026)
+- 📝 **Sistema de construção por planta** (holograma no chão; jogador ou robôs completam).
+- 📝 **Colônia leve** (indicador 🟢🟡🔴 por domo, bônus em vez de punição).
+- 📝 **Revisão da D10** (morte/volta pra Terra mais sutil ou sem).
+- 📝 **Cruzar** lista de desejos + validação (D17) com o [catálogo de materiais](design/catalogo-materiais.md) → lista final de materiais.
+
 ## Pendências técnicas soltas
 - CPU-Z no PC Xeon (D6) → decidir upgrade de RAM.
 - Emendas dos DTMs CTX do catálogo (linhas retas fracas no norte/nordeste).

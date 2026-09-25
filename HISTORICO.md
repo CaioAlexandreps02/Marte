@@ -89,3 +89,13 @@
   no Unity (Import Jezero + Setup World). Conferir a trilha no HiRISE (crista estreita) e o aviso de sinal no corredor.
 - O canto oeste (bolsão de Cheyava Falls em x = 3,2 km e o cume em x = 3,8 km) fica a < 1 km da borda dos tiles:
   se a vista do Mirante para oeste parecer cortada, crescer o mapa 1–2 km para oeste.
+
+### Design — funcionalidades (tarde de 25/09/2026)
+- Método de oferta × demanda: [catálogo de materiais](design/catalogo-materiais.md) (86 matérias-primas, 62 refinados)
+  × [lista de desejos](design/lista-desejos.md) (visão do Caio: quase tudo do Surviving Mars + fábrica leve do Satisfactory).
+- Inventários completos: [Surviving Mars](design/referencia-surviving-mars.md) (279 itens) e
+  [Satisfactory](design/referencia-satisfactory.md) (140 itens + alternativas de esteira).
+- **D17:** 11 blocos validados com o critério extra da **vida real** ([validação](design/validacao-funcionalidades.md)).
+  Destaques: tubo selado de cápsulas como "esteira", colônia leve, domos de gelo, janelas de lançamento, ciclo do
+  hidrogênio, rovers elétricos, estações do ano, Limite de Armstrong, cavernas só para explorar.
+- Próximo: cruzar desejos × materiais; sessões novas (construção por planta, colônia leve, revisão D10).

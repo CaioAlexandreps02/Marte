@@ -231,3 +231,24 @@ Detalhes: seção 8 de [design/proposta-marcos-e-cavernas.md](design/proposta-ma
 - **Início do jogador** no pad da base (14,25; 13,50). **Caverna-tutorial nova:** Abrigo do Terraço, face sul da mesa (12,90; 12,80). Grupo do sul (Kodiak, Perseverance, Séítah) vira a primeira expedição de rover.
 - **Novo tipo de edição `nivelamentos`** no pipeline do terreno (plano inclinado ajustado à área + ondulação residual + transição suave).
 - **Base antiga (9,1; 12,05)** vira **local de pouso de uma missão anterior**: algo pra encontrar no futuro (foguete, peças, destroços). Diferente do pouso do Perseverance (sítio real, ao sul).
+
+## D17 — Escopo de funcionalidades validado (25/09/2026)
+
+Detalhes item a item: [design/validacao-funcionalidades.md](design/validacao-funcionalidades.md) (base viva, pode ser atualizada).
+Critérios usados: Surviving Mars (espinha da colônia) × Satisfactory (fábrica leve) × **vida real** (NASA/ciência) × pilares.
+
+**Principais escolhas:**
+- **Exportação realista:** amostras científicas, dados, deutério, combustível em órbita + metais raros (grupo da platina de meteoritos) e/ou um mineral exclusivo de Marte [JOGO]. Metas da missão: em aberto (fora do MVP). Dificuldade: pós-MVP.
+- **Terra:** janelas de lançamento (ondas); foguete precisa de metano local pra voltar; dependência da Terra diminui com tecnologias de produção local.
+- **Colônia LEVE, sem microgestão:** saúde/bem-estar e especialidades existem mas pesam pouco; traços bem simples; nascimentos no meio do jogo. **Morte/volta pra Terra: mais sutil ou nem ter → revisar D10.**
+- **Domos:** módulos cobertos de regolito → domos de gelo translúcidos (Mars Ice Home) → domos de vidro.
+- **Robôs** que pousaram antes ajudam a construir: **sistema de planta no chão** (holograma completado pelo jogador ou pelos robôs). Ajudantes iniciais com rodas; drones voadores avançados; rover aberto → pressurizado; caminhão com rota; terraplanagem autônoma; trem no futuro.
+- **Fábrica leve** com poucas máquinas de processos reais (forno de redução, MOXIE, Sabatier, sinterizadora, montadora); teor de minério; sala de controle física; receitas alternativas = processos reais.
+- **Transporte = tubo selado de cápsulas** (3 níveis, cápsula com janela) da mina até a fábrica. Sem trilho de caçambas. Teleféricos (carga e pessoas) em aberto.
+- **Ciclo do hidrogênio** (H₂ + CO₂ → água + metano → eletrólise), gelo depois; metano pra foguetes e geradores de reserva; **rovers elétricos**; reciclagem de água; vento/redemoinhos limpam painéis.
+- **Pesquisa:** local (amostras no laboratório) + da Terra (pacotes de tecnologia nos foguetes); descobertas escondidas nos marcos.
+- **Desastres:** tempestade = crise de energia/visibilidade (global rara); **estações do ano**; meteoritos ocasionais quebram coisas e trazem itens valiosos; tempestade solar → abrigo; sem terremotos.
+- **Terraformação** com 4 medidores ligados e marcos reais (lago, **Limite de Armstrong** = traje leve + máscara, céu azul, ar respirável); prédios de aerogel → gases de flúor/carbonatos → nanopartículas, escudo magnético, espelhos orbitais, cometas.
+- **Cavernas só para explorar e coletar** (sem construir dentro). Scanner = radar de subsolo + espectrômetro; sem jetpack. História: decidir depois.
+
+**Sessões de design novas:** sistema de construção por planta; colônia leve (indicador por domo); revisão da D10.
