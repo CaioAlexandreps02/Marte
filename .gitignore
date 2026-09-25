@@ -16,6 +16,7 @@ referencias/transcricao-video-*.txt
 [Uu]ser[Ss]ettings/
 Unity/*.csproj
 Unity/*.sln
+Unity/*.slnx
 .vs/
 
 # Terreno: cache de download e saidas grandes (so metadata.json e preview.png entram no git)
@@ -23,6 +24,19 @@ ferramentas/terreno/cache/
 ferramentas/terreno/saida/*
 !ferramentas/terreno/saida/metadata.json
 !ferramentas/terreno/saida/preview.png
+!ferramentas/terreno/saida/fundo_preview.png
 
 # .NET
 [Bb]in/
+
+# Terreno importado no Unity (gerado por Marte/Terrain/Import Jezero)
+Unity/Assets/Resources/Terrain/
+Unity/Assets/Resources/Terrain.meta
+Unity/Assets/Terrain/
+Unity/Assets/Terrain.meta
+# Renders e capturas de trabalho
+Unity/Assets/Screenshots/
+Unity/Assets/Screenshots.meta
+
+# Python
+__pycache__/

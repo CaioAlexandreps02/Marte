@@ -1,0 +1,85 @@
+{
+  "_comentario": "Definicao do mapa de jogo. Coordenadas de mapa: x -> leste, z -> norte, em metros/km a partir do canto sudoeste da REFERENCIA (o mapa 25x25 original), para que edicoes, inicio e area jogavel nao mudem de lugar quando o mapa cresce ou se desloca.",
+  "tiles_x": 28,
+  "tiles_z": 25,
+  "oeste_graus": 77.28717539797688,
+  "sul_graus": 18.362535161135078,
+  "referencia": {
+    "_comentario": "canto sudoeste do sistema de coordenadas das edicoes (mapa 25x25 de 24/09/2026)",
+    "oeste_graus": 77.23378269317607,
+    "sul_graus": 18.362535161135078
+  },
+  "nivel_agua_m": -2560,
+  "exagero_vertical": 2.0,
+  "inicio_alvo_km": [
+    11.0,
+    6.2
+  ],
+  "area_jogavel_km": {
+    "_comentario": "Poligono onde o jogador pode andar (coordenadas de referencia). Oeste: meio da subida da borda da cratera, abrindo pouco para leste no norte (Caio). Norte: contorna a beirada sul do canyon (ver edicoes.json). Alem disso so visual.",
+    "poligono": [
+      [
+        4.5,
+        0
+      ],
+      [
+        31,
+        0
+      ],
+      [
+        31,
+        25
+      ],
+      [
+        23.6,
+        25
+      ],
+      [
+        23.0,
+        22.9
+      ],
+      [
+        13.0,
+        22.9
+      ],
+      [
+        12.4,
+        25
+      ],
+      [
+        9.0,
+        25
+      ],
+      [
+        8.2,
+        22.5
+      ],
+      [
+        7.4,
+        20
+      ],
+      [
+        6.5,
+        17
+      ],
+      [
+        5.6,
+        14
+      ],
+      [
+        4.8,
+        11
+      ],
+      [
+        4.5,
+        5
+      ]
+    ]
+  },
+  "fundo": {
+    "_comentario": "Terreno so visual em volta do mapa (exportar_fundo.py). meia_largura a partir do centro do mapa.",
+    "meia_largura_km": 50,
+    "espacamento_m": 100,
+    "ctx_margem_km": 8
+  }
+}

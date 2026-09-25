@@ -1,0 +1,38 @@
+{
+  "_comentario": "Edicoes feitas a mao sobre o relevo real (D8: 'real + feito a mao'). Coordenadas em metros no mapa: x -> leste, z -> norte, (0,0) = canto sudoeste. Alturas reais (sem exagero).",
+  "suavizacoes": [
+    {
+      "nome": "planicie_norte_do_lago",
+      "_comentario": "Faixa ondulada entre o lago e as colinas do norte (pedido do Caio): area grande e mais nivelada para bases. Poligono em km de mapa (x, z).",
+      "poligono_km": [[12.0, 12.2], [20.5, 11.9], [21.0, 15.5], [19.5, 18.6], [15.5, 19.2], [12.5, 18.0], [11.8, 15.0]],
+      "escala_m": 100,
+      "manter": 0.3,
+      "transicao_m": 500
+    }
+  ],
+  "canyons": [
+    {
+      "nome": "canyon_norte",
+      "_comentario": "Vale real das Hephaestus Fossae (HiRISE 1 m, CC0) na borda norte, so visual: o limite jogavel passa na beirada sul (Caio, 24/09/2026). Eixo de oeste para leste; profundidade real 150 m = ~300 m no jogo (exagero 2x).",
+      "fonte_url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_069071_2020_ESP_063847_2020/DTEEC_069071_2020_063847_2020_A01.tif",
+      "de_km": [13.0, 23.6],
+      "ate_km": [23.0, 23.6],
+      "largura_km": 2.6,
+      "profundidade_m": 150,
+      "afinar_pontas_km": 1.5
+    }
+  ],
+  "platos": [
+    {
+      "nome": "base_inicial",
+      "x_m": 9100,
+      "z_m": 12050,
+      "raio_m": 300,
+      "transicao_m": 150,
+      "altura_m": -2456.5,
+      "detalhe": 0.1,
+      "irregularidade": 0.35,
+      "semente": 7
+    }
+  ]
+}

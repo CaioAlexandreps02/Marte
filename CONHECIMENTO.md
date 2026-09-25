@@ -365,6 +365,12 @@ Marketing é a área do Caio, então é vantagem competitiva real. Combinando o 
 
 ---
 
+> **Atualização (24/09/2026):** a recomendação de 10.9/10.10 (mapa ≤ 8 km, sem floating origin, terreno sempre
+> carregado) foi **superada** pelo D8: o mapa agora é 28×25 km com floating origin e streaming (ver 12). O risco
+> citado ("floating origin faz o terreno piscar em URP") continua a ser observado em teste.
+
+---
+
 ## 11. Decisões em aberto (responder uma de cada vez)
 
 - [x] Engine: Unity ou Unreal? → Unity 6 URP (D6)
@@ -375,9 +381,70 @@ Marketing é a área do Caio, então é vantagem competitiva real. Combinando o 
 - [x] Quem vive na colônia? → população abstrata (B); protótipo só com robôs (A) (D2)
 - [x] Como funciona a terraformação (simples)? → híbrida: cúpulas locais + medidores globais (D3)
 - [x] Papel da sobrevivência → traje leve, colonos estilo Surviving Mars, dificuldade define rigor (D10)
-- [x] Estrutura do mundo → contínuo 8×8 km, Jezero real + feito à mão (D8)
+- [x] Estrutura do mundo → contínuo, Jezero real + feito à mão (D8); **tamanho atualizado para 28×25 km** com streaming e fundo só visual
+- [x] Nivelamento de terreno → D14
 - [x] Pilares → D9 (sem combate)
 - [x] Core loop → D11 (história, pesquisa e suprimentos: sessões futuras)
 - [x] Escopo do MVP → "do pouso ao primeiro domo" (D13)
 - [x] Estilo visual → semi-realista estilizado (D12)
 - [ ] Nome do jogo
+
+---
+
+## 12. Terreno na prática (sessão de 24/09/2026)
+
+### 12.1 Dados usados de fato
+| Fonte | Cobertura real | Observações |
+|---|---|---|
+| Mosaico **HiRISE 1 m** Mars 2020 (`JEZ_hirise_soc_006...`) | ~21×21 km, mas com **buracos** (14% da janela de 16 km; nordeste sem dado) | TIFF em faixas de 1 linha (não é COG) → leitura por HTTP Range. No 28×25 cobre **~33%** do mapa |
+| Mosaico **CTX 20 m** Mars 2020 | ~32×30 km (lat 18,21–18,72) | Base de 20 m; acaba ao norte de 18,72° |
+| **DTMs CTX do catálogo STAC** USGS (`mro_ctx_controlled_usgs_dtms`) | Dezenas em volta de Jezero | CC0. **Desvio vertical entre DTMs de −60 a +5 m** → cada um alinhado pela mediana contra o mosaico; descartados os com dispersão > 15 m; junção pela mediana. Deixa **linhas retas fracas** onde cada DTM acaba |
+| **DTMs HiRISE do catálogo STAC** (`mro_hirise_socet_dtms`) | 1.262 DTMs no planeta, CC0 | Usados para stamps (canyon) |
+| **MOLA 463 m** (`Mars_MGS_MOLA_DEM_mosaic_global_463m.tif`, USGS) | Global | **CC0**. Leitura por janela via `/vsicurl` (120 km em ~11 s). Desvio vs CTX: −2,6 m |
+
+- HiRISE e CTX Mars 2020 estão relativos ao areoide MOLA ("DeltaGeoid") → compatíveis com MOLA sem conversão.
+- Todos os produtos usados estão na mesma projeção (equiretangular, esfera R = 3.396.190 m), então não precisa reprojetar.
+
+### 12.2 Paredões e canyons reais (escolha do stamp)
+- Filtrados 16 candidatos pelo texto do catálogo; medido o desnível e a inclinação em 4 m **só em janelas 100% com
+  dado** (preencher buracos com valor médio cria paredões falsos na borda do DTM).
+- Mais íngremes: **Hephaestus Fossae** (fissura reta, até 79°, ~350 m de desnível), parede de cratera com basalto
+  colunar (73°), escarpa da base do Olympus Mons (53°). Mesas de Protonilus e o "grand canyon" de Gale são bem menos íngremes do que parecem.
+- **Visualização:** o 3D do matplotlib desenha na ordem errada e engana; renderizar como terreno no próprio Unity
+  (`Marte → Terrain → Render Stamp Previews`) é o jeito confiável de comparar.
+- Paredões de DTM têm **trechos interpolados** (triângulos lisos) onde o estéreo falhou.
+- Esticar um vale no comprimento não muda a inclinação das paredes (usado para ir de 5,9 para 10 km).
+
+### 12.3 Mundo grande sem parecer "bugado" (técnica adotada)
+| Camada | Distância | Implementação |
+|---|---|---|
+| Tiles completos (1 m, colisão) | raio 2,5 km, descarrega a 3,2 km | `TerrainStreamer`: `Resources.LoadAsync`, 2 cargas simultâneas, 1 colisor por quadro, carregamento antecipado na direção do movimento (4 s) |
+| Horizonte (mapa inteiro, 31 m) | sempre | 1 malha por tile, some quando o tile carrega; "saia" de 40 m nas bordas contra frestas |
+| Fundo (100×100 km, 100 m) | sempre, só visual | CTX até 8 km da borda, MOLA além; células dentro do mapa ficam de fora |
+| Névoa de poeira + céu | — | Névoa exponencial 0,00012 (some tudo por volta de 40 km); céu em gradiente cuja parte de baixo tem a cor da névoa → a borda do mundo nunca aparece, nem vista do alto |
+
+- Nome da técnica em outras engines: "World Partition + HLOD" (Unreal). Na Unity foi montado à mão.
+- **Floating origin:** recentraliza todos os objetos raiz a cada 1 km; os tiles ficam filhos de um objeto raiz, então a
+  posição local deles = posição verdadeira no mapa.
+- **Horizonte real de Marte:** ~3,5 km para quem está em pé num chão plano (planeta menor). O mundo do jogo é plano,
+  então a névoa ajuda a parecer real. Curvar o fundo para baixo fica como ideia.
+- **Limite do mapa:** barreira invisível + aviso no traje ("sinal da base fraco") + barreiras naturais (borda da cratera,
+  canyon). O fundo continua do outro lado.
+- Memória na largada: ~650 MB com 9 tiles; 1 tile = 1025² (2 MB de altura + colisor).
+
+### 12.4 Tamanho de mapas de referência
+Complementa 10.9: GTA V ~80 km²; Minecraft praticamente infinito (procedural). O nosso 28×25 km = 700 km² — o
+tamanho percebido depende de conteúdo por km² e da velocidade (a pé 5 m/s: ~1h30 para cruzar 28 km).
+
+### 12.5 Unity MCP (CoplayDev) — pegadinhas da instalação
+- O Unity não enxerga o `uv` recém-instalado (PATH antigo) → apontar o **UVX Path** na aba Advanced.
+- Modo **HTTP Local** falha (`uv: unexpected argument '--from'`) → usar **stdio** com o `.mcp.json` do projeto.
+- "Configure" para Claude Code exige o `claude` CLI; com o app desktop basta o `.mcp.json`.
+- **Telemetria vem ligada no lado do Unity** (`EditorPrefs`) → desligada com `TelemetryHelper.DisableTelemetry()`;
+  no servidor, `DISABLE_TELEMETRY=1`.
+- Com a janela do Unity **sem foco**, o Play quase não avança (o editor reduz a atualização).
+- Mudanças de cena feitas **durante o Play** se perdem → sempre checar o estado antes de importar/montar.
+
+### 12.6 Tempos e tamanhos (PC de desenvolvimento)
+- Geração 28×25 (dados em cache): ~9 min; fundo: ~1 min; 1ª execução baixa ~1,5 GB (HiRISE) + ~50 DTMs CTX.
+- Importação no Unity: ~4,5 min para 700 tiles (~1,4 GB de TerrainData, fora do Git).

@@ -3,7 +3,9 @@
 Jogo de colônia + automação em Marte, 1ª pessoa, Unity 6.3 LTS (URP). Dev solo (Caio) guiando o Claude Code.
 
 ## Leia antes de qualquer tarefa
-- [DECISOES.md](DECISOES.md) — decisões fechadas (D1–D13). **Não contradizer sem o Caio pedir.**
+- [DECISOES.md](DECISOES.md) — decisões fechadas (D1–D14). **Não contradizer sem o Caio pedir.**
+- [ROADMAP.md](ROADMAP.md) — ordem de trabalho até o MVP e sessões de design pendentes.
+- [HISTORICO.md](HISTORICO.md) — o que foi feito em cada sessão (atualizar ao fim de cada uma).
 - [CONHECIMENTO.md](CONHECIMENTO.md) — pesquisa de apoio (engine, MCP, terreno, concorrentes).
 - Pilares (D9): toda feature precisa servir a um pilar e não bater com nenhum "não é" (ex: **sem combate**).
 
@@ -16,9 +18,10 @@ Jogo de colônia + automação em Marte, 1ª pessoa, Unity 6.3 LTS (URP). Dev so
 Simulation/          C# puro (netstandard2.1, C# 9) — lógica do jogo, SEM referência ao Unity
 Simulation.Tests/    Testes NUnit da simulação (roda com `dotnet test`, sem Unity)
 Data/                Dados de jogo (receitas, máquinas, recursos, stats) em JSON — separados do código
-ferramentas/terreno/ Pipeline Python do heightmap real de Jezero → tiles RAW pro Unity
+ferramentas/terreno/ Pipeline Python do terreno real (mapa.json, edicoes.json) → tiles RAW + fundo pro Unity
 referencias/         Renders, documento original, transcrição de referência
-Unity/               (futuro) projeto Unity 6.3 — só apresentação, input, câmera, UI, áudio
+design/              Mecânicas detalhadas (resumo de cada uma em DECISOES.md)
+Unity/               Projeto Unity 6.3 URP — só apresentação, input, câmera, UI, áudio (ver Unity/README.md)
 ```
 
 ## Regras de arquitetura (D5 — base pronta pra co-op)
@@ -35,14 +38,18 @@ Unity/               (futuro) projeto Unity 6.3 — só apresentação, input, c
 - `Simulation/` mira **netstandard2.1 + C# 9**: nada de APIs só de .NET 5+, `record struct`, `required`, file-scoped types, etc. `record class` e `init` exigem cuidado (usar só se compilar no Unity).
 - Testes usam **NUnit** (mesmo framework do Unity Test Framework) pra poder migrar.
 
-## Unity (quando existir)
-- Nunca editar `.unity`, `.prefab` ou `.meta` à mão. Criar conteúdo via **editor scripts**.
-- Stack de IA: plugin oficial `unity-agent-plugin` + `unity` CLI; MCP `CoplayDev/unity-mcp` (telemetria off). **Não usar** AnkleBreaker MCP (licença exige logo no jogo).
-- Terreno: MicroSplat Core + "URP for Unity 6.3". Não trocar a versão do Unity.
+## Unity
+- Versão fixa: **6000.3.25f1 (6.3 LTS)**, URP. Não trocar a versão.
+- Nunca editar `.unity`, `.prefab` ou `.meta` à mão. Criar conteúdo via **editor scripts** (menu `Marte/...`).
+- **MCP `CoplayDev/unity-mcp`** em modo **stdio** via `.mcp.json` (uvx do winget), telemetria desligada. O Unity precisa estar aberto com a sessão ativa (Window → MCP for Unity). **Não usar** AnkleBreaker MCP (licença exige logo no jogo). `unity` CLI instalado; plugin `unity-agent-plugin` ainda não.
+- **Antes de mexer na cena pelo MCP, checar se o editor está em Play** (`mcpforunity://editor/state`): mudanças feitas em Play se perdem.
+- Terreno: gerado por `ferramentas/terreno/` e importado por `Marte → Terrain → Import Jezero` + `Marte → Scene → Setup World, Water and Player`. Tiles, horizonte e fundo são **gerados** (fora do Git). Streaming, floating origin e limite do mapa: ver `Unity/README.md`.
+- Texturas futuras: MicroSplat Core + "URP for Unity 6.3".
 
 ## Dados de terreno
-- Só dados **CC0** (USGS HiRISE/CTX) na área jogável. **Nunca** o mosaico CTX da Murray Lab (NC-ND) nem Blend HRSC (CC BY-SA).
+- Só dados **CC0** (USGS HiRISE/CTX/MOLA). **Nunca** o mosaico CTX da Murray Lab (NC-ND) nem Blend HRSC (CC BY-SA).
 - Arquivos grandes (`*.raw`, `*.tif`, `*.npy`) ficam fora do Git; o script regenera.
+- Tamanho, água, início e **área jogável** em `ferramentas/terreno/mapa.json`; platôs, suavizações e canyons em `edicoes.json`. As coordenadas de edição usam um **sistema de referência fixo** (canto sudoeste do mapa 25×25 original), então não mudam quando o mapa cresce.
 
 ## Antes de concluir uma tarefa
 - `dotnet build` sem erros nem warnings novos.
@@ -51,4 +58,4 @@ Unity/               (futuro) projeto Unity 6.3 — só apresentação, input, c
 
 ## Git
 - **Nunca commitar ou dar push sem aprovação explícita do Caio.**
-- Remote: `git@github.com:CaioAlexandreps02/Marte.git` (chave SSH padrão `id_ed25519`).
+- Remote: `CaioAlexandreps02/Marte` no GitHub. **Neste PC** (24/09/2026): nenhuma chave SSH entra como CaioAlexandreps02 (`id_ed25519` = MeuJudi, `vpt_github_new` = vptvolei-team, padrão do `~/.ssh/config`) → usar **HTTPS** com login do Caio pelo Git Credential Manager. Não há `user.name`/`user.email` global: o autor dos commits precisa ser informado pelo Caio.

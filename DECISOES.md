@@ -68,6 +68,16 @@
 - **Mapa contínuo** (desvantagens e mitigação em [CONHECIMENTO.md](CONHECIMENTO.md) 10.10).
 - **Real + feito à mão:** relevo real da NASA/USGS como base + formações de outras regiões coladas como stamps + detalhes à mão.
 - **Tamanho:** **8×8 km desde o início**, em tiles de 1 km, origem no centro. Se ficar ruim, diminui. 10×10 fica como possibilidade, mas passa do limite recomendado sem floating origin (canto a ~7 km do centro).
+- **Atualização 2 (24/09/2026, Caio): mapa de 25×25 km**, crescendo para **nordeste** a partir do 16×16 (canto sudoeste fixo, mesmas coordenadas de mapa para o que já existia). O dado de 1 m (HiRISE) só cobre ~55% do 25×25; o resto usa **CTX 20 m real** (mosaico Mars 2020 + DTMs CTX do catálogo USGS, CC0), que é mais liso — o Caio quer justamente espaço mais reto/liso nessa parte. Norte: sobe para a borda da cratera; leste: fundo plano da cratera.
+- **Nível da água: −2560 m** (antes −2530) → lago ~15% do 25×25 (em −2530 seria 24%). Libera fundo de cratera plano entre a base e o lago.
+- **Direção do Caio para o mapa (24/09/2026):** o mapa grande existe para dar **espaço de construção** (a base cresce aos poucos, é o foco do jogo, já que há poucas ameaças), não precisa ter "algo interessante" em cada km². **Alguns recursos ficam bem longe da base**, para o jogador ter que explorar e buscar. O carregamento tem que manter o **horizonte visível** sem parecer bugado (sem terreno surgindo do nada nem borda cortada).
+- **Mundo sem fim visível (Caio, 24/09/2026):** em volta do mapa jogável há um **terreno de fundo só visual** (sem colisão), com relevo real: CTX 20 m até 8 km da borda e **MOLA 463 m (USGS, CC0)** até 50 km do centro — dá pra ver a cratera de Jezero inteira. Névoa de poeira + céu caramelo (D12) escondem o fim. **Limite:** aviso no traje "SINAL DA BASE FRACO — fora da área de operação" a partir de 1,2 km da borda e barreira invisível a 300 m da borda. Curvatura do planeta (horizonte real ~3,5 km) fica como ideia para testar depois.
+- **Streaming de tiles** (carregar só os tiles perto do jogador) entra como próximo passo técnico por causa dos 625 tiles. Mapa maior que 25×25 fica possível depois (dado CTX 20 m cobre dezenas de km em volta), mas não é compromisso.
+- **Atualização (24/09/2026, pedido do Caio): mapa de 16×16 km** (256 tiles de 1 km), substitui o 8×8. Motivo: com rovers, 8 km se atravessa em poucos minutos. O mosaico HiRISE de 1 m cobre ~21×21 km em volta de Jezero, então o 16×16 cabe inteiro em dado real de 1 m (mesmo centro do recorte B). Exige **floating origin** (bordas a 8 km do centro) e resolução menor nos tiles distantes.
+- **Formas de relevo a incluir (Caio):** paredões verticais retos, falésias longas e vale estreito, espalhados pelo mapa, **sempre com dado real** (CC0). Falésia longa e vale: candidatos naturais na área (borda da cratera, Neretva Vallis). Paredão vertical e vale estreito: stamp **Hephaestus Fossae** (HiRISE `DTEEC_069071_2020_063847_2020_A01`, 1 m, CC0), escolhido pelo Caio entre 4 candidatos renderizados no Unity. **Altura: meio-termo, ~300 m no jogo** (paredes ~75°), em vez dos 150 m iniciais (achatariam demais com o exagero 2×) ou dos ~660 m reais×2. Obs.: as paredes do DTM têm trechos interpolados (triângulos lisos) → disfarçar com textura/ruído.
+- **Mapa jogável 28×25 km (Caio, 24/09/2026):** 3 km a menos a oeste, 6 km a mais a leste (planície seca ao norte do lago). **A borda da cratera a oeste é só parcialmente jogável:** o limite passa no **meio da subida** (dá pra subir um pedaço, não chegar ao topo nem atravessar); no norte abre pouco para leste. Coordenadas de edições/limite presas a uma referência fixa (`mapa.json → referencia`).
+- **Canyon (Caio, 24/09/2026):** o vale das Hephaestus Fossae foi para a **borda norte** (x 13–23 km, z ≈ 23,6 km nas coordenadas de referência), **só visual**: 10 km de leste a oeste (5,9 km reais esticados no comprimento), profundidade ~300 m no jogo, pontas afinando. O limite jogável contorna a **beirada sul** — dá pra chegar na borda e olhar, não descer. Fora do meio do mapa para não tirar espaço de construção. Mesas isoladas (Gale) ficam como ideia para depois.
+- **Área da base inicial (Caio, 24/09/2026):** platô nivelado a mão em x 9,1 km / z 12,05 km do mapa 16×16 (fundo de uma bacia com dunas antigas, ~73 m acima da água futura). Raio 300 m plano + 150 m de transição, altura real −2456,5 m. Configurado em `ferramentas/terreno/edicoes.json` (reaplicado a cada geração).
 - **Região:** base em **Jezero** (lago, delta, rio seco → água volta com a terraformação), recorte posicionado pra incluir a borda da cratera (serra, com exagero vertical 1,5–2,5×); **Gale** entra como stamps (morros estratificados) e o **Aeolis Mons** como montanha no horizonte (só visual). Resultado: "inspirado em Jezero e Gale", não geograficamente fiel.
 - **Custo:** caminho **gratuito** — dados USGS (CC0), GDAL/QGIS, Unity Terrain Tools, MicroSplat core, Poly Haven/ambientCG, espalhamento de pedras por script do Claude. Reserva de **~US$20, uma vez**, pro módulo URP do MicroSplat se o terreno precisar de mais de 8 texturas.
 - **Licenças:** só dados CC0 na área jogável; nunca o mosaico CTX da Murray Lab (NC-ND).
@@ -167,6 +177,18 @@ Fatia vertical de **1–2 h de jogo**, base da futura demo do Steam.
 
 **Sessão de design futura adicionada:**
 - [ ] **Recursos de Marte** — como funcionam na realidade (gelo, regolito, minerais, atmosfera de CO₂, percloratos etc.) e como traduzir pro jogo. Define a lista final de recursos do MVP.
+
+## D14 — Nivelamento de terreno (24/09/2026)
+
+Detalhes: [design/mecanica-nivelamento-terreno.md](design/mecanica-nivelamento-terreno.md).
+
+- O relevo real sempre terá irregularidade; construir nele é resolvido em **três camadas**:
+  1. **Fundações auto-niveladoras** (pernas até o chão) — **MVP**.
+  2. **Terraplanagem manual** com prévia, volume visível e custo de energia; **cortar gera regolito**, aterrar consome.
+  3. **Drone de terraplanagem** automatiza (pós-MVP, coerente com D10).
+- **Overlay de inclinação** verde/amarelo/vermelho no posicionamento (faixas em `Data/`, proposta 5°/15° medidos no jogo).
+- **Ordem:** fundações → overlay → ferramenta manual → drone.
+- **Técnico (D5):** alterar terreno é comando; ajustes de altura ficam no estado da simulação (inteiros, só onde houve edição) e são reaplicados quando um tile carrega no streaming.
 
 ## Notas de design — Recursos (em aberto, 24/09/2026)
 

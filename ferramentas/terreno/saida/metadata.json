@@ -4,79 +4,1357 @@
     "indice": "x = leste (0 = oeste), z = norte (0 = sul); (0,0) = canto sudoeste",
     "formato": "RAW uint16 little-endian (Windows), 1025x1025, sem cabecalho",
     "linha_0_do_raw": "SUL (Unity padrao, sem Flip Vertically)",
-    "bordas": "tiles vizinhos compartilham a linha/coluna de borda (grade global 8193 -> tile = amostras [i*1024 .. i*1024+1024])",
-    "png_16bit": "Jezero_mapa_16bit_4097.png: mapa inteiro, 1 a cada 2 amostras, NORTE em cima (convencao de imagem)"
+    "bordas": "tiles vizinhos compartilham a linha/coluna de borda (grade global 28673x25601 -> tile = amostras [i*1024 .. i*1024+1024])",
+    "png_16bit": "Jezero_mapa_16bit.png: mapa inteiro, 1 a cada 2 amostras, NORTE em cima (convencao de imagem)"
   },
   "grade": {
-    "tiles_por_lado": 8,
+    "tiles_x": 28,
+    "tiles_z": 25,
     "tamanho_tile_m": 1000.0,
     "amostras_por_tile": 1025,
-    "amostras_global": 8193,
+    "amostras_x": 28673,
+    "amostras_z": 25601,
     "espacamento_m": 0.9765625,
-    "tamanho_mapa_m": 8000.0
+    "tamanho_x_m": 28000.0,
+    "tamanho_z_m": 25000.0
+  },
+  "referencia": {
+    "desloc_x_m": -2999.9999999998954,
+    "desloc_z_m": 0.0,
+    "uso": "coordenada_mapa = coordenada_referencia + desloc (edicoes, inicio e area jogavel usam a referencia)"
   },
   "altura": {
-    "min_real_m": -2586.929,
-    "max_real_m": -1816.919,
+    "min_real_m": -2676.47,
+    "max_real_m": -1740.411,
     "margem_m": 5.0,
-    "min_codificado_m": -2592,
-    "max_codificado_m": -1811,
-    "faixa_m": 781,
-    "precisao_por_degrau_m": 0.011917296101319905,
+    "min_codificado_m": -2682,
+    "max_codificado_m": -1735,
+    "faixa_m": 947,
+    "precisao_por_degrau_m": 0.014450293736171512,
     "decodificar": "h_m = min_codificado_m + valor/65535 * faixa_m",
     "alturas_reais_sem_exagero": true
   },
   "unity": {
     "terrain_size": {
       "x": 1000.0,
-      "y": 1562.0,
+      "y": 1894.0,
       "z": 1000.0
     },
     "heightmap_resolution": 1025,
     "exagero_vertical": 2.0,
     "y_mundo": "y = (h_m - min_codificado_m) * exagero_vertical (terreno em y=0)",
-    "posicao_tile_origem_no_centro": "tile (x,z) em ({x}*1000 - 4000, 0, {z}*1000 - 4000)"
+    "posicao_tile_origem_no_centro": "tile (x,z) em ({x}*1000 - 14000, 0, {z}*1000 - 12500)"
   },
   "agua": {
-    "nivel_m": -2530.0,
-    "normalizado": 0.0793854033290653,
-    "y_mundo_com_exagero": 124.0
+    "nivel_m": -2560.0,
+    "normalizado": 0.12882787750791974,
+    "y_mundo_com_exagero": 244.0
   },
   "inicio_jogador": {
-    "x_m": 7273.4,
-    "z_m": 6414.1,
+    "x_m": 8214.8,
+    "z_m": 6281.2,
     "tile": [
-      7,
+      8,
       6
     ],
-    "altura_m": -2521.31,
-    "normalizado": 0.0905058368677977,
-    "y_mundo_com_exagero": 141.3701171875,
-    "criterio": "menor inclinacao media em 300 m, fundo do lago entre agua+2 m e -2512 m, perto de (7,0; 2,2) km"
+    "altura_m": -2548.81,
+    "normalizado": 0.14064897579527455,
+    "y_mundo_com_exagero": 266.38916015625,
+    "criterio": "menor inclinacao media em 300 m, fundo do lago entre agua+2 m e -2512 m, perto de (8.0; 6.2) km do mapa"
+  },
+  "area_jogavel": {
+    "poligono_m_centro": [
+      [
+        -12499.999999999894,
+        -12500.0
+      ],
+      [
+        14000.000000000106,
+        -12500.0
+      ],
+      [
+        14000.000000000106,
+        12500.0
+      ],
+      [
+        6600.0000000001055,
+        12500.0
+      ],
+      [
+        6000.0000000001055,
+        10400.0
+      ],
+      [
+        -3999.9999999998945,
+        10400.0
+      ],
+      [
+        -4599.9999999998945,
+        12500.0
+      ],
+      [
+        -7999.999999999895,
+        12500.0
+      ],
+      [
+        -8799.999999999894,
+        10000.0
+      ],
+      [
+        -9599.999999999894,
+        7500.0
+      ],
+      [
+        -10499.999999999894,
+        4500.0
+      ],
+      [
+        -11399.999999999894,
+        1500.0
+      ],
+      [
+        -12199.999999999894,
+        -1500.0
+      ],
+      [
+        -12499.999999999894,
+        -7500.0
+      ]
+    ],
+    "sistema": "metros, origem no centro do mapa, x leste, z norte"
   },
   "geo": {
-    "centro_lat": 18.4975,
-    "centro_lon": 77.3761,
+    "centro_lat": 18.573417721861517,
     "limites_graus": {
-      "oeste": 77.30494134658802,
-      "leste": 77.44725865341196,
-      "sul": 18.430017580567537,
-      "norte": 18.56498241943246
+      "oeste": 77.28717539797687,
+      "leste": 77.78550730945109,
+      "sul": 18.362535161135078,
+      "norte": 18.784300282587957
     },
     "projecao": "Equiretangular Mars 2000 esfera (R=3396190 m, lat_ts=0); largura L-O corrigida por cos(lat do centro)",
-    "correcao_cos_lat": 0.9483374993309232
+    "correcao_cos_lat": 0.947916288623376
   },
   "fontes": {
     "hirise_dtm_1m": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/HiRISE/JEZ_hirise_soc_006_DTM_MOLAtopography_DeltaGeoid_1m_Eqc_latTs0_lon0_blend40.tif",
     "ctx_dtm_20m": "https://planetarymaps.usgs.gov/mosaic/mars2020_trn/CTX/JEZ_ctx_B_soc_008_DTM_MOLAtopography_DeltaGeoid_20m_Eqc_latTs0_lon0.tif",
+    "ctx_dtms_catalogo": [
+      {
+        "id": "P18_007925_1987_XN_18N282W__P19_008650_1987_XI_18N282W",
+        "desvio_m": -20.62,
+        "dispersao_m": 9.34
+      },
+      {
+        "id": "N02_063242_1988_XN_18N283W__N03_063532_1988_XN_18N283W",
+        "desvio_m": -33.15,
+        "dispersao_m": 11.14
+      },
+      {
+        "id": "N01_062886_1988_XN_18N282W__N02_063308_1988_XN_18N282W",
+        "desvio_m": -31.01,
+        "dispersao_m": 10.72
+      },
+      {
+        "id": "K23_062385_1988_XN_18N282W__K23_062451_1988_XN_18N282W",
+        "desvio_m": -16.37,
+        "dispersao_m": 14.21
+      },
+      {
+        "id": "K21_061607_1988_XN_18N283W__K19_060829_1986_XN_18N283W",
+        "desvio_m": -31.3,
+        "dispersao_m": 11.79
+      },
+      {
+        "id": "K19_060763_1986_XN_18N282W__K19_060697_1985_XN_18N282W",
+        "desvio_m": -38.79,
+        "dispersao_m": 9.98
+      },
+      {
+        "id": "K18_060341_1985_XN_18N282W__K18_060407_1984_XN_18N282W",
+        "desvio_m": -18.54,
+        "dispersao_m": 11.41
+      },
+      {
+        "id": "K17_060196_1985_XN_18N282W__K18_060486_1984_XN_18N282W",
+        "desvio_m": -40.97,
+        "dispersao_m": 12.83
+      },
+      {
+        "id": "K17_060130_1985_XN_18N282W__K18_060275_1985_XN_18N282W",
+        "desvio_m": -19.76,
+        "dispersao_m": 10.38
+      },
+      {
+        "id": "K13_058574_1983_XN_18N282W__K13_058640_1983_XN_18N282W",
+        "desvio_m": -29.27,
+        "dispersao_m": 14.87
+      },
+      {
+        "id": "K12_057928_1978_XN_17N282W__K12_058073_1978_XN_17N282W",
+        "desvio_m": -40.88,
+        "dispersao_m": 11.92
+      },
+      {
+        "id": "J10_048842_1986_XN_18N282W__J11_048908_1986_XN_18N282W",
+        "desvio_m": -23.2,
+        "dispersao_m": 13.89
+      },
+      {
+        "id": "J03_045994_1986_XN_18N282W__J03_046060_1986_XN_18N282W",
+        "desvio_m": -24.01,
+        "dispersao_m": 13.52
+      },
+      {
+        "id": "G14_023524_1985_XN_18N282W__G13_023379_1985_XN_18N282W",
+        "desvio_m": -30.08,
+        "dispersao_m": 13.86
+      },
+      {
+        "id": "G13_023102_1986_XN_18N282W__G13_023168_1986_XN_18N282W",
+        "desvio_m": -16.3,
+        "dispersao_m": 9.64
+      },
+      {
+        "id": "F09_039203_1984_XN_18N282W__F09_039348_1984_XN_18N282W",
+        "desvio_m": -23.61,
+        "dispersao_m": 8.28
+      },
+      {
+        "id": "F05_037818_1977_XN_17N282W__F04_037330_2008_XN_20N282W",
+        "desvio_m": -29.87,
+        "dispersao_m": 14.97
+      },
+      {
+        "id": "F05_037752_2008_XN_20N282W__F05_037607_2008_XN_20N282W",
+        "desvio_m": -22.75,
+        "dispersao_m": 10.58
+      },
+      {
+        "id": "F04_037396_1985_XN_18N282W__F17_042315_1986_XN_18N282W",
+        "desvio_m": -28.53,
+        "dispersao_m": 13.13
+      },
+      {
+        "id": "F02_036618_1985_XN_18N282W__F03_037119_2001_XN_20N283W",
+        "desvio_m": -36.29,
+        "dispersao_m": 9.69
+      },
+      {
+        "id": "D22_035629_1987_XN_18N282W__D21_035563_1987_XN_18N282W",
+        "desvio_m": -16.16,
+        "dispersao_m": 9.44
+      },
+      {
+        "id": "D19_034495_1988_XN_18N282W__D20_035141_1987_XN_18N282W",
+        "desvio_m": -15.32,
+        "dispersao_m": 12.81
+      },
+      {
+        "id": "D14_032794_1989_XN_18N282W__D15_033216_1989_XN_18N282W",
+        "desvio_m": -32.34,
+        "dispersao_m": 14.36
+      },
+      {
+        "id": "D12_031871_1986_XN_18N282W__D12_031805_1986_XN_18N282W",
+        "desvio_m": -15.96,
+        "dispersao_m": 10.78
+      }
+    ],
     "licenca": "Dominio publico (USGS / CC0)",
-    "citacao": "Fergason, R.L., et al. (2020). Mars 2020 Terrain Relative Navigation Flight Product Generation: Digital Terrain Model and Orthorectified Image Mosaics. 51st LPSC, abstract #2020. USGS Astrogeology Science Center. Dados de dominio publico (CC0 / USGS).",
-    "uso_ctx": "somente buracos NaN do HiRISE (transicao de 30 m)",
-    "hirise_menos_ctx_m": {
-      "media": -0.9930354952812195,
-      "desvio": 3.6829938888549805
-    },
-    "buracos_hirise_pct": 0.01517018006440564
+    "citacao": [
+      "Fergason, R.L., et al. (2020). Mars 2020 Terrain Relative Navigation Flight Product Generation: Digital Terrain Model and Orthorectified Image Mosaics. 51st LPSC, abstract #2020. USGS Astrogeology Science Center. Dados de dominio publico (CC0 / USGS).",
+      "USGS Astrogeology Science Center, MRO CTX controlled DTMs (Analysis Ready Data, stac.astrogeology.usgs.gov, colecao mro_ctx_controlled_usgs_dtms). CC0-1.0."
+    ],
+    "fracao_mapa_hirise": 0.32893411662628225,
+    "uso_ctx": "onde nao ha HiRISE (transicao de 30 m); catalogo so fora do mosaico CTX (transicao de 500 m)"
   },
-  "reamostragem": "B-spline cubica (scipy affine_transform order=3) a partir do HiRISE 1 m"
+  "hirise_por_tile": [
+    [
+      0.09799999743700027,
+      0.004000000189989805,
+      0.0010000000474974513,
+      0.9539999961853027,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.45899999141693115,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      0.9649999737739563,
+      0.8460000157356262,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.335999995470047,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.20900000631809235,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.0820000022649765,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.953000009059906,
+      0.0020000000949949026,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.8289999961853027,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.7070000171661377,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.5809999704360962,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.4569999873638153,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.3319999873638153,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.2070000022649765,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      0.9850000143051147,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.0820000022649765,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      1.0,
+      0.0989999994635582,
+      0.6309999823570251,
+      0.9150000214576721,
+      0.9980000257492065,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.9570000171661377,
+      0.0020000000949949026,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      0.9629999995231628,
+      0.004999999888241291,
+      0.0,
+      0.0,
+      0.04100000113248825,
+      0.3140000104904175,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.9629999995231628,
+      0.16300000250339508,
+      0.2800000011920929,
+      0.33899998664855957,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      0.8349999785423279,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3019999861717224,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.8460000157356262,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.4779999852180481,
+      0.4429999887943268,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.4320000112056732,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.722000002861023,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5410000085830688,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.5989999771118164,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.34599998593330383,
+      0.6610000133514404,
+      0.7910000085830688,
+      0.9200000166893005,
+      0.9990000128746033,
+      0.4740000069141388,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.050999999046325684,
+      0.0560000017285347,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "reamostragem": "B-spline cubica (scipy affine_transform order=3)",
+  "mapa": {
+    "_comentario": "Definicao do mapa de jogo. Coordenadas de mapa: x -> leste, z -> norte, em metros/km a partir do canto sudoeste da REFERENCIA (o mapa 25x25 original), para que edicoes, inicio e area jogavel nao mudem de lugar quando o mapa cresce ou se desloca.",
+    "tiles_x": 28,
+    "tiles_z": 25,
+    "oeste_graus": 77.28717539797688,
+    "sul_graus": 18.362535161135078,
+    "referencia": {
+      "_comentario": "canto sudoeste do sistema de coordenadas das edicoes (mapa 25x25 de 24/09/2026)",
+      "oeste_graus": 77.23378269317607,
+      "sul_graus": 18.362535161135078
+    },
+    "nivel_agua_m": -2560,
+    "exagero_vertical": 2.0,
+    "inicio_alvo_km": [
+      11.0,
+      6.2
+    ],
+    "area_jogavel_km": {
+      "_comentario": "Poligono onde o jogador pode andar (coordenadas de referencia). Oeste: meio da subida da borda da cratera, abrindo pouco para leste no norte (Caio). Norte: contorna a beirada sul do canyon (ver edicoes.json). Alem disso so visual.",
+      "poligono": [
+        [
+          4.5,
+          0
+        ],
+        [
+          31,
+          0
+        ],
+        [
+          31,
+          25
+        ],
+        [
+          23.6,
+          25
+        ],
+        [
+          23.0,
+          22.9
+        ],
+        [
+          13.0,
+          22.9
+        ],
+        [
+          12.4,
+          25
+        ],
+        [
+          9.0,
+          25
+        ],
+        [
+          8.2,
+          22.5
+        ],
+        [
+          7.4,
+          20
+        ],
+        [
+          6.5,
+          17
+        ],
+        [
+          5.6,
+          14
+        ],
+        [
+          4.8,
+          11
+        ],
+        [
+          4.5,
+          5
+        ]
+      ]
+    },
+    "fundo": {
+      "_comentario": "Terreno so visual em volta do mapa (exportar_fundo.py). meia_largura a partir do centro do mapa.",
+      "meia_largura_km": 50,
+      "espacamento_m": 100,
+      "ctx_margem_km": 8
+    }
+  },
+  "edicoes": {
+    "_comentario": "Edicoes feitas a mao sobre o relevo real (D8: 'real + feito a mao'). Coordenadas em metros no mapa: x -> leste, z -> norte, (0,0) = canto sudoeste. Alturas reais (sem exagero).",
+    "suavizacoes": [
+      {
+        "nome": "planicie_norte_do_lago",
+        "_comentario": "Faixa ondulada entre o lago e as colinas do norte (pedido do Caio): area grande e mais nivelada para bases. Poligono em km de mapa (x, z).",
+        "poligono_km": [
+          [
+            12.0,
+            12.2
+          ],
+          [
+            20.5,
+            11.9
+          ],
+          [
+            21.0,
+            15.5
+          ],
+          [
+            19.5,
+            18.6
+          ],
+          [
+            15.5,
+            19.2
+          ],
+          [
+            12.5,
+            18.0
+          ],
+          [
+            11.8,
+            15.0
+          ]
+        ],
+        "escala_m": 100,
+        "manter": 0.3,
+        "transicao_m": 500
+      }
+    ],
+    "canyons": [
+      {
+        "nome": "canyon_norte",
+        "_comentario": "Vale real das Hephaestus Fossae (HiRISE 1 m, CC0) na borda norte, so visual: o limite jogavel passa na beirada sul (Caio, 24/09/2026). Eixo de oeste para leste; profundidade real 150 m = ~300 m no jogo (exagero 2x).",
+        "fonte_url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_069071_2020_ESP_063847_2020/DTEEC_069071_2020_063847_2020_A01.tif",
+        "de_km": [
+          13.0,
+          23.6
+        ],
+        "ate_km": [
+          23.0,
+          23.6
+        ],
+        "largura_km": 2.6,
+        "profundidade_m": 150,
+        "afinar_pontas_km": 1.5
+      }
+    ],
+    "platos": [
+      {
+        "nome": "base_inicial",
+        "x_m": 9100,
+        "z_m": 12050,
+        "raio_m": 300,
+        "transicao_m": 150,
+        "altura_m": -2456.5,
+        "detalhe": 0.1,
+        "irregularidade": 0.35,
+        "semente": 7
+      }
+    ]
+  },
+  "fundo": {
+    "arquivo": "fundo.raw",
+    "amostras": 1001,
+    "espacamento_m": 100.0,
+    "meia_largura_m": 50000.0,
+    "min_codificado_m": -3112,
+    "faixa_m": 2573,
+    "linha_0": "SUL",
+    "origem": "centro do mapa",
+    "decodificar": "h_m = min_codificado_m + valor/65535 * faixa_m",
+    "fontes": {
+      "ctx_20m_ate_km_da_borda": 8,
+      "ctx_dtms_catalogo": [
+        {
+          "id": "P18_007925_1987_XN_18N282W__P19_008650_1987_XI_18N282W",
+          "desvio_m": -20.22,
+          "dispersao_m": 9.17
+        },
+        {
+          "id": "N04_064020_1983_XN_18N283W__N04_063954_1982_XN_18N283W",
+          "desvio_m": -22.3,
+          "dispersao_m": 9.01
+        },
+        {
+          "id": "N04_063809_1982_XN_18N282W__N05_064231_1982_XN_18N282W",
+          "desvio_m": -36.68,
+          "dispersao_m": 12.42
+        },
+        {
+          "id": "N03_063453_1982_XN_18N282W__N03_063519_1982_XN_18N282W",
+          "desvio_m": -21.85,
+          "dispersao_m": 14.88
+        },
+        {
+          "id": "N02_063242_1988_XN_18N283W__N03_063532_1988_XN_18N283W",
+          "desvio_m": -33.62,
+          "dispersao_m": 12.64
+        },
+        {
+          "id": "N01_062886_1988_XN_18N282W__N02_063308_1988_XN_18N282W",
+          "desvio_m": -36.29,
+          "dispersao_m": 12.92
+        },
+        {
+          "id": "K23_062385_1988_XN_18N282W__K23_062451_1988_XN_18N282W",
+          "desvio_m": -16.86,
+          "dispersao_m": 14.17
+        },
+        {
+          "id": "K23_062240_1985_XN_18N283W__K23_062174_1986_XN_18N283W",
+          "desvio_m": -61.18,
+          "dispersao_m": 10.4
+        },
+        {
+          "id": "K21_061607_1988_XN_18N283W__K19_060829_1986_XN_18N283W",
+          "desvio_m": -36.95,
+          "dispersao_m": 12.44
+        },
+        {
+          "id": "K19_060763_1986_XN_18N282W__K19_060697_1985_XN_18N282W",
+          "desvio_m": -43.77,
+          "dispersao_m": 12.58
+        },
+        {
+          "id": "K18_060341_1985_XN_18N282W__K18_060407_1984_XN_18N282W",
+          "desvio_m": -26.06,
+          "dispersao_m": 13.72
+        },
+        {
+          "id": "K17_060196_1985_XN_18N282W__K18_060486_1984_XN_18N282W",
+          "desvio_m": -42.33,
+          "dispersao_m": 14.57
+        },
+        {
+          "id": "K17_060130_1985_XN_18N282W__K18_060275_1985_XN_18N282W",
+          "desvio_m": -23.9,
+          "dispersao_m": 11.75
+        },
+        {
+          "id": "K12_057928_1978_XN_17N282W__K12_058073_1978_XN_17N282W",
+          "desvio_m": -42.78,
+          "dispersao_m": 13.5
+        },
+        {
+          "id": "K06_055567_1983_XN_18N283W__K05_055501_1983_XN_18N283W",
+          "desvio_m": -42.3,
+          "dispersao_m": 13.76
+        },
+        {
+          "id": "K01_053945_1984_XN_18N282W__K01_053879_1984_XN_18N282W",
+          "desvio_m": -41.32,
+          "dispersao_m": 11.31
+        },
+        {
+          "id": "K01_053589_1983_XN_18N283W__K01_053655_1983_XN_18N283W",
+          "desvio_m": -19.28,
+          "dispersao_m": 8.66
+        },
+        {
+          "id": "J22_053378_1984_XN_18N282W__J22_053312_1984_XN_18N282W",
+          "desvio_m": -45.62,
+          "dispersao_m": 11.44
+        },
+        {
+          "id": "J21_053022_1984_XN_18N282W__J21_053167_1984_XN_18N282W",
+          "desvio_m": -25.65,
+          "dispersao_m": 12.0
+        },
+        {
+          "id": "J20_052521_1984_XN_18N282W__J20_052455_1984_XN_18N282W",
+          "desvio_m": -49.38,
+          "dispersao_m": 11.16
+        },
+        {
+          "id": "J13_049897_1980_XN_18N283W__J12_049330_1982_XN_18N283W",
+          "desvio_m": -26.99,
+          "dispersao_m": 9.31
+        },
+        {
+          "id": "J11_049264_1982_XN_18N283W__J12_049330_1982_XN_18N283W",
+          "desvio_m": -42.16,
+          "dispersao_m": 12.56
+        },
+        {
+          "id": "J11_049053_1980_XN_18N282W__J11_049119_1982_XN_18N282W",
+          "desvio_m": -47.57,
+          "dispersao_m": 11.01
+        },
+        {
+          "id": "J10_048842_1986_XN_18N282W__J11_048908_1986_XN_18N282W",
+          "desvio_m": -24.47,
+          "dispersao_m": 14.02
+        },
+        {
+          "id": "G13_023102_1986_XN_18N282W__G13_023168_1986_XN_18N282W",
+          "desvio_m": -17.22,
+          "dispersao_m": 9.24
+        },
+        {
+          "id": "F09_039203_1984_XN_18N282W__F09_039348_1984_XN_18N282W",
+          "desvio_m": -22.77,
+          "dispersao_m": 8.57
+        },
+        {
+          "id": "F05_037752_2008_XN_20N282W__F05_037607_2008_XN_20N282W",
+          "desvio_m": -24.6,
+          "dispersao_m": 10.91
+        },
+        {
+          "id": "F02_036618_1985_XN_18N282W__F03_037119_2001_XN_20N283W",
+          "desvio_m": -40.92,
+          "dispersao_m": 12.27
+        },
+        {
+          "id": "D22_035629_1987_XN_18N282W__D21_035563_1987_XN_18N282W",
+          "desvio_m": -16.17,
+          "dispersao_m": 9.61
+        },
+        {
+          "id": "D19_034495_1988_XN_18N282W__D20_035141_1987_XN_18N282W",
+          "desvio_m": -15.27,
+          "dispersao_m": 12.42
+        },
+        {
+          "id": "D12_031871_1986_XN_18N282W__D12_031805_1986_XN_18N282W",
+          "desvio_m": -13.03,
+          "dispersao_m": 10.68
+        },
+        {
+          "id": "B19_016931_1975_XN_17N283W__B19_017076_1975_XN_17N282W",
+          "desvio_m": -58.0,
+          "dispersao_m": 13.12
+        }
+      ],
+      "mola": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars_MGS_MOLA_DEM_mosaic_global_463m.tif",
+      "mola_desvio_m": -0.4296875,
+      "citacao": "Mars MGS MOLA DEM 463m (Mars_MGS_MOLA_DEM_mosaic_global_463m), USGS Astrogeology Science Center / NASA PDS. CC0 (dominio publico)."
+    }
+  }
 }
