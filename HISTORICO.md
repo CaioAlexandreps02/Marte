@@ -50,6 +50,7 @@
 ### Pendências conhecidas (terreno)
 - Linhas retas fracas onde termina cada DTM CTX do catálogo (norte/nordeste) — suavizar a emenda.
 - Paredão sul do canyon com triângulos de interpolação do DTM — disfarçar com textura/ruído.
+- **Canyon ainda não impressiona visto do chão:** sem textura de rocha nas partes íngremes e sem sombras longas, o paredão de ~300 m parece encosta lisa → resolver na etapa de texturas (pintura por inclinação) e sombras. O limite jogável acompanha a beirada a ~25 m (33 pontos).
 - Água ainda reflete o céu azul antigo; aviso do limite é provisório (OnGUI).
 - Streaming não foi testado em alta velocidade com o editor em foco (só a largada).
 - 14% (16×16) / ~67% (28×25) do mapa vem de dado de 20 m: mais liso, sem pedras pequenas.
