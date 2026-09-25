@@ -6,7 +6,7 @@
 ## Fase 0 — Base técnica
 | Item | Status | Onde |
 |---|---|---|
-| Decisões D1–D14, pilares, core loop, MVP | ✅ | DECISOES.md |
+| Decisões D1–D16, pilares, core loop, MVP | ✅ | DECISOES.md |
 | Simulação C# (grade, tick 20/s, comandos, minerador/esteira/fundição/baú, save) + 7 testes | ✅ | Simulation/ |
 | Projeto Unity 6.3 URP + MCP | ✅ | Unity/, .mcp.json |
 
@@ -17,6 +17,11 @@
 | Streaming, horizonte, fundo, floating origin, limite do mapa, céu e névoa | ✅ |
 | Jogador 1ª pessoa (andar, correr, voo de teste) | ✅ |
 | Ajustes finos de relevo (mais suavizações/platôs, mesas de Gale, emendas CTX) | 🔶 contínuo |
+| **Edições D15/D16 no pipeline** (Variante A + corredor, canyon diagonal, poços, mesas, base nivelada, trilha do Mirante, início no pad) | 🔶 feito no pipeline, falta regenerar tiles + reimportar no Unity (PC Xeon) |
+| Marcadores de marcos no Unity a partir de `ferramentas/terreno/marcos.json` (editor script `Marte/...`) | ⬜ |
+| **Cavernas** como malhas (entrada + interior modular/cena aditiva) + **Terrain Holes** por editor script, reaplicados a cada import; 1º protótipo: Abrigo do Terraço (#37, tutorial) | ⬜ |
+| Campos de pedras da base (pad só cascalho, normal na zona, denso na transição e no pé da Mesa do Terraço) | ⬜ |
+| Aviso "sinal da base fraco" no corredor da trilha (medir até a antena do Mirante ou desligar no corredor) | ⬜ |
 | **Texturas do terreno** (MicroSplat Core + módulo URP 6.3, paleta D12, pintura por inclinação/altura) | ⬜ |
 | Pedras e detalhes espalhados (Poly Haven CC0, espalhamento por script) | ⬜ |
 | Água de verdade (shader, reflexo do céu certo) | ⬜ |

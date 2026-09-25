@@ -1,38 +1,108 @@
 {
-  "_comentario": "Edicoes feitas a mao sobre o relevo real (D8: 'real + feito a mao'). Coordenadas em metros no mapa: x -> leste, z -> norte, (0,0) = canto sudoeste. Alturas reais (sem exagero).",
+  "_comentario": "Edicoes feitas a mao sobre o relevo real (D8: 'real + feito a mao'). Coordenadas no sistema de REFERENCIA (mapa.json -> referencia): x -> leste, z -> norte, (0,0) = canto sudoeste do mapa 25x25 original; *_km em km, x_m/z_m em metros. Alturas reais (sem exagero). Ordem de aplicacao (exportar_heightmap.aplicar_edicoes): suavizacoes -> nivelamentos -> mesas -> pocos -> canyons -> trilhas -> platos.",
+  "_d15_d16": [
+    "D15 (marcos, area jogavel, canyon): canyons.fossas_de_hefesto (movido da borda norte para a diagonal), pocos.* (cadeia de colapso), mesas.pico_farol e mesas.mesa_estratificada_* (marcos 11 e 13), trilhas.trilha_do_mirante + platos.cume_do_mirante",
+    "D16 (base no centro B2): nivelamentos.base_central, platos.pad_de_pouso, mesas.mesa_do_terraco (+45 m); platos.base_inicial virou platos.pouso_missao_anterior",
+    "Anteriores (D8): suavizacoes.planicie_norte_do_lago"
+  ],
   "suavizacoes": [
     {
       "nome": "planicie_norte_do_lago",
-      "_comentario": "Faixa ondulada entre o lago e as colinas do norte (pedido do Caio): area grande e mais nivelada para bases. Poligono em km de mapa (x, z).",
+      "_comentario": "Faixa ondulada entre o lago e as colinas do norte (pedido do Caio): area grande e mais nivelada para bases. Poligono em km (x, z).",
       "poligono_km": [[12.0, 12.2], [20.5, 11.9], [21.0, 15.5], [19.5, 18.6], [15.5, 19.2], [12.5, 18.0], [11.8, 15.0]],
       "escala_m": 100,
       "manter": 0.3,
       "transicao_m": 500
     }
   ],
+  "nivelamentos": [
+    {
+      "nome": "base_central",
+      "_comentario": "D16 - Terraco do Lago (B2): plano ajustado ao poligono, metade da inclinacao natural, 12% da ondulacao; transicao de 400 m para FORA do poligono. A reentrancia a oeste contorna a Mesa do Terraco; o sul fica >= 0,45 km da escarpa do lago. Meta: inclinacao mediana <= 1,5 graus no jogo, chao >= agua + 50 m.",
+      "poligono_km": [[15.94, 13.55], [15.87, 14.08], [15.5, 14.48], [15.05, 14.68], [14.62, 14.77], [14.18, 14.79], [13.73, 14.71], [13.33, 14.45], [13.07, 14.04], [13.64, 13.55], [13.74, 13.31], [13.73, 12.98], [13.97, 12.81], [14.27, 12.8], [14.53, 12.8], [14.77, 12.91], [15.07, 12.98], [15.73, 13.06]],
+      "manter": 0.12,
+      "inclinacao": 0.5,
+      "transicao_m": 400
+    }
+  ],
+  "mesas": [
+    {
+      "nome": "mesa_do_terraco",
+      "_comentario": "D16 - reforco da mesa real (13,05; 13,17) em +45 m reais (~+160 m sobre a base no jogo), forma da Kodiak (stamp do mosaico CTX 20 m, com topo plano). Marco 36.",
+      "x_km": 13.05, "z_km": 13.17, "somar_m": 45, "base_raio_m": 480, "rotacao_graus": 0,
+      "fonte_km": [9.81, 4.51], "fonte_raio_m": 300, "topo_plano": 0.5
+    },
+    {
+      "nome": "pico_farol",
+      "_comentario": "D15 - marco 11: marco alto de orientacao (~230 m no jogo). Forma da Kodiak ampliada; trocar por um stamp de mesa de Gale quando houver.",
+      "x_km": 11.0, "z_km": 15.8, "somar_m": 115, "base_raio_m": 550, "rotacao_graus": 35,
+      "fonte_km": [9.81, 4.51], "fonte_raio_m": 300, "topo_plano": 0.55
+    },
+    {
+      "nome": "mesa_estratificada_1",
+      "_comentario": "D15 - marco 13 (Mesas Estratificadas): 3 mesas pequenas ao norte da planicie, forma da Kodiak.",
+      "x_km": 16.5, "z_km": 19.2, "somar_m": 45, "base_raio_m": 300, "rotacao_graus": 110,
+      "fonte_km": [9.81, 4.51], "fonte_raio_m": 300, "topo_plano": 0.6
+    },
+    {
+      "nome": "mesa_estratificada_2",
+      "x_km": 17.1, "z_km": 19.6, "somar_m": 30, "base_raio_m": 300, "rotacao_graus": 200,
+      "fonte_km": [9.81, 4.51], "fonte_raio_m": 300, "topo_plano": 0.6
+    },
+    {
+      "nome": "mesa_estratificada_3",
+      "x_km": 16.9, "z_km": 18.9, "somar_m": 22, "base_raio_m": 300, "rotacao_graus": 290,
+      "fonte_km": [9.81, 4.51], "fonte_raio_m": 300, "topo_plano": 0.6
+    }
+  ],
+  "pocos": [
+    {"nome": "poco_1", "_comentario": "D15 - cadeia de pocos de colapso (tubo de lava) saindo da ponta SE do canyon em direcao ao lago. Entradas das cavernas de gelo (malha no Unity).",
+     "x_km": 23.8, "z_km": 14.6, "raio_m": 200, "profundidade_m": 70, "fundo": 0.35, "irregularidade": 0.3, "semente": 21},
+    {"nome": "poco_2", "x_km": 24.2, "z_km": 14.1, "raio_m": 280, "profundidade_m": 90, "fundo": 0.35, "irregularidade": 0.3, "semente": 22},
+    {"nome": "poco_3", "x_km": 24.6, "z_km": 13.6, "raio_m": 220, "profundidade_m": 70, "fundo": 0.35, "irregularidade": 0.3, "semente": 23},
+    {"nome": "poco_4", "x_km": 24.9, "z_km": 13.2, "raio_m": 150, "profundidade_m": 45, "fundo": 0.35, "irregularidade": 0.3, "semente": 24}
+  ],
   "canyons": [
     {
-      "nome": "canyon_norte",
-      "_comentario": "Vale real das Hephaestus Fossae (HiRISE 1 m, CC0) na borda norte, so visual: o limite jogavel passa na beirada sul (Caio, 24/09/2026). Eixo de oeste para leste; profundidade real 150 m = ~300 m no jogo (exagero 2x).",
+      "nome": "fossas_de_hefesto",
+      "_comentario": "D15 - vale real das Hephaestus Fossae (HiRISE 1 m, CC0), agora JOGAVEL, na diagonal NO->SE da planicie leste (6,4 km, quase o comprimento real de 5,9 km). Profundidade real 150 m = ~300 m no jogo. Pontas afinando = rampas de descida.",
       "fonte_url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_069071_2020_ESP_063847_2020/DTEEC_069071_2020_063847_2020_A01.tif",
-      "de_km": [13.0, 23.6],
-      "ate_km": [23.0, 23.6],
+      "de_km": [19.0, 19.6],
+      "ate_km": [23.4, 15.0],
       "largura_km": 2.6,
       "profundidade_m": 150,
       "afinar_pontas_km": 1.5
     }
   ],
+  "trilhas": [
+    {
+      "nome": "trilha_do_mirante",
+      "_comentario": "D15 - Trilha do Mirante da Sentinela: rota de menor custo (CTX 20 m) do inicio da trilha (5,22; 12,54) ao cume (3,82; 11,46) pela crista norte, simplificada a 10 m. Leito plano de 7 m; degraus acima do limite viram rampa escavada.",
+      "polilinha_km": [[5.22, 12.54], [4.944, 12.264], [4.856, 12.222], [4.776, 12.264], [4.543, 12.497], [4.383, 12.579], [4.219, 12.74], [4.148, 12.776], [3.906, 12.663], [3.974, 12.623], [3.942, 12.618], [3.978, 12.582], [3.862, 12.541], [3.821, 12.462], [3.82, 12.422], [3.899, 12.381], [3.702, 12.016], [3.778, 11.864], [3.86, 11.814], [3.86, 11.664], [3.822, 11.583], [3.82, 11.464]],
+      "largura_m": 7,
+      "transicao_m": 8,
+      "suavizar_m": 15,
+      "max_inclinacao_jogo_graus": 22
+    }
+  ],
   "platos": [
     {
-      "nome": "base_inicial",
-      "x_m": 9100,
-      "z_m": 12050,
-      "raio_m": 300,
-      "transicao_m": 150,
-      "altura_m": -2456.5,
-      "detalhe": 0.1,
-      "irregularidade": 0.35,
-      "semente": 7
+      "nome": "pouso_missao_anterior",
+      "_comentario": "Antiga base inicial (D8) mantida: vira o local de pouso de uma missao anterior (D16), algo para achar depois.",
+      "x_m": 9100, "z_m": 12050, "raio_m": 300, "transicao_m": 150, "altura_m": -2456.5,
+      "detalhe": 0.1, "irregularidade": 0.35, "semente": 7
+    },
+    {
+      "nome": "pad_de_pouso",
+      "_comentario": "D16 - pad de pouso da base (inicio do jogador), horizontal. altura_m null = mediana do terreno ja nivelado no raio.",
+      "x_m": 14250, "z_m": 13500, "raio_m": 250, "transicao_m": 100, "altura_m": null,
+      "detalhe": 0.05, "irregularidade": 0.2, "semente": 11
+    },
+    {
+      "nome": "cume_do_mirante",
+      "_comentario": "D15 - plataforma do Mirante da Sentinela (antena/farol) no cume (-1741 m no CTX). altura_m null = mediana do terreno no raio.",
+      "x_m": 3820, "z_m": 11460, "raio_m": 60, "transicao_m": 40, "altura_m": null,
+      "detalhe": 0.05, "irregularidade": 0.2, "semente": 3
     }
   ]
 }

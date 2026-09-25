@@ -56,3 +56,36 @@
 - 14% (16×16) / ~67% (28×25) do mapa vem de dado de 20 m: mais liso, sem pedras pequenas.
 - Git: criada a chave `~/.ssh/id_ed25519_caio` (conta CaioAlexandreps02) e enviados os commits; o `origin` local
   continua sem URL (ver CLAUDE.md → Git). Release com o zip do mapa: pendente.
+
+## 25/09/2026 — Marcos, cavernas e base no centro (design + pipeline)
+
+### Design
+- **Recursos (continuação):** a água segue em duas frentes (hidrogênio da Terra + CO₂ → Sabatier; **gelo escondido em
+  cavernas** [JOGO]) e os metais ganharam direção (magnésio da olivina/serpentina, aço = ferro + carbono dos
+  carbonatos). Isso virou critério para os marcos: cavernas de gelo, carbonatos, meteoritos ferrosos, olivina em Séítah.
+- **D15 — Marcos, área jogável e canyon** ([proposta](design/proposta-marcos-e-cavernas.md), imagens 12–16): lugares reais
+  de Jezero localizados pelos waypoints do Perseverance/Ingenuity e pelo DTM CTX (Kodiak, Belva, Three Forks, Séítah,
+  Cheyava Falls…); área jogável **Variante A "Delta + Leste"** (~338 km²); canyon das Hephaestus Fossae na **diagonal
+  da planície leste** + cadeia de **poços de colapso**; **35 marcos** (5 mesas reais achadas no DTM, 10 cavernas de tipos
+  diferentes); **Mirante da Sentinela** no cume da borda oeste com trilha de 3,3 km pela crista norte (rota de menor custo).
+- **D16 — Base no centro, B2 "Terraço do Lago"** (imagens 17–19): zona de 4,1 km² aplainada com um tipo novo de edição,
+  **Mesa do Terraço** reforçada (+45 m), início no pad de pouso, **Abrigo do Terraço** como caverna-tutorial nova; a base
+  antiga vira o pouso de uma missão anterior.
+
+### Pipeline do terreno (`ferramentas/terreno/`, ainda não regenerado)
+- `mapa.json`: polígono Variante A + corredor de 300 m da trilha e círculo no cume; `inicio_km` exato no pad
+  (14,25; 13,50) — o exportador não procura mais o início no fundo do lago. Tiles continuam **28×25**.
+- `edicoes.json`: canyon movido; tipos novos **`nivelamentos`**, **`mesas`** (stamp da Kodiak do CTX), **`pocos`**,
+  **`trilhas`**; platôs do pad e do cume com `altura_m: null` (mediana do terreno já editado); ordem de aplicação única
+  em `aplicar_edicoes`. Autoverificação (`verificar_edicoes`) vai para `metadata.json`.
+- Canyon processado em faixas (a diagonal cobre ~7×7 km) e com cache pelo nome da fonte.
+- `marcos.json`: 41 marcos (37 numerados + base, início, início da trilha, pouso da missão anterior) para o Unity.
+- `preview_edicoes.py`: aplica tudo com as mesmas funções sobre o CTX 20 m (roda sem os tiles) → imagens 20–22.
+  Resultado no CTX: base com inclinação mediana **0,9° no jogo**, chão ≥ **62,6 m** acima da água; Mesa do Terraço
+  −2449 → −2404 m (+45 m); trilha com máximo de **24°** no jogo (antes 33°), corte máximo 3,6 m.
+
+### Pendências
+- **No PC Xeon:** renomear `cache/stamp_canyon_norte.*` → `stamp_DTEEC_069071_2020_063847_2020_A01.*` (evita baixar 94 MB), regenerar (`exportar_heightmap.py`, `exportar_fundo.py`), conferir `verificacao_edicoes` e reimportar
+  no Unity (Import Jezero + Setup World). Conferir a trilha no HiRISE (crista estreita) e o aviso de sinal no corredor.
+- O canto oeste (bolsão de Cheyava Falls em x = 3,2 km e o cume em x = 3,8 km) fica a < 1 km da borda dos tiles:
+  se a vista do Mirante para oeste parecer cortada, crescer o mapa 1–2 km para oeste.

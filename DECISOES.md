@@ -209,3 +209,25 @@ Detalhes: [design/mecanica-nivelamento-terreno.md](design/mecanica-nivelamento-t
 - **Usos dos metais (direção):** magnésio → drones e algumas peças de veículos, redutor pra fazer **silício** (com sílica) e **titânio**, e fertilizante (agricultura). Estrutura do domo: **aço** e/ou **alumínio** (definir).
 - **Aço = ferro + carbono**; carbono vem do CO₂ do ar ou dos carbonatos do delta (ambos reais em Jezero).
 - **Magnésio em mais de um lugar:** olivina no fundo da cratera **e** serpentina na borda (ambos reais). Nós submersos após a terraformação podem ser minerados com tecnologia de extração subaquática (a definir).
+
+## D15 — Marcos, área jogável e canyon (25/09/2026)
+
+Base: [design/proposta-marcos-e-cavernas.md](design/proposta-marcos-e-cavernas.md) e `referencias/terreno/12_proposta_marcos.png`.
+
+- Problema: o mapa parecia vazio por **falta de marcos**, não por tamanho.
+- **Área jogável: Variante A "Delta + Leste"** (~337 km², ~7× Satisfactory; lago ~15%; inclui Cheyava Falls e a cratera-atol).
+- **Canyon** sai da borda norte e passa a **cruzar a planície leste na diagonal**, de (19,0; 19,6) a (23,4; 15,0) km, seguido de uma **cadeia de poços de colapso** até (24,9; 13,2) com cavernas de gelo.
+- **26 marcos** da proposta aceitos como base, e o Caio quer **mais**: mais cavernas e mais mesas.
+- **Subir a montanha:** um trecho da borda da cratera (a parte menos íngreme) passa a ser jogável, com um **mirante** no alto pra ver o mapa (a definir: rota e extensão).
+- Pendente de implementação: `mapa.json` (novo polígono), `edicoes.json` (canyon novo; tipos novos `pocos` e `mesas`), cavernas como malhas + Terrain Holes (ver proposta).
+
+## D16 — Base no centro: B2 "Terraço do Lago" (25/09/2026)
+
+Detalhes: seção 8 de [design/proposta-marcos-e-cavernas.md](design/proposta-marcos-e-cavernas.md); imagens `referencias/terreno/17–19`.
+
+- **Base** em (14,40; 13,55) km, a 1,3 km do centro da Variante A, sempre seca (chão final ≥ 64 m reais acima da água).
+- **Zona aplainada de ~4,1 km²** (+400 m de transição), inclinação ~0,9° no jogo, 12% da ondulação original → depois **campo de rochas**: pad de pouso (raio 250 m, só cascalho), pedras normais na zona, pedras densas na transição e no pé da mesa.
+- **Mesa do Terraço** (real, 13,05; 13,17) **reforçada em +45 m** (forma da Kodiak) → ~+160 m sobre a base no jogo.
+- **Início do jogador** no pad da base (14,25; 13,50). **Caverna-tutorial nova:** Abrigo do Terraço, face sul da mesa (12,90; 12,80). Grupo do sul (Kodiak, Perseverance, Séítah) vira a primeira expedição de rover.
+- **Novo tipo de edição `nivelamentos`** no pipeline do terreno (plano inclinado ajustado à área + ondulação residual + transição suave).
+- **Base antiga (9,1; 12,05)** vira **local de pouso de uma missão anterior**: algo pra encontrar no futuro (foguete, peças, destroços). Diferente do pouso do Perseverance (sítio real, ao sul).

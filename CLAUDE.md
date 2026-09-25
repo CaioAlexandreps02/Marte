@@ -49,7 +49,7 @@ Unity/               Projeto Unity 6.3 URP — só apresentação, input, câmer
 ## Dados de terreno
 - Só dados **CC0** (USGS HiRISE/CTX/MOLA). **Nunca** o mosaico CTX da Murray Lab (NC-ND) nem Blend HRSC (CC BY-SA).
 - Arquivos grandes (`*.raw`, `*.tif`, `*.npy`) ficam fora do Git; o script regenera.
-- Tamanho, água, início e **área jogável** em `ferramentas/terreno/mapa.json`; platôs, suavizações e canyons em `edicoes.json`. As coordenadas de edição usam um **sistema de referência fixo** (canto sudoeste do mapa 25×25 original), então não mudam quando o mapa cresce.
+- Tamanho, água, início e **área jogável** em `ferramentas/terreno/mapa.json`; edições (suavizações, nivelamentos, mesas, poços, canyons, trilhas, platôs) em `edicoes.json`; marcos em `marcos.json`. Testar edições sem os tiles: `python preview_edicoes.py`. As coordenadas de edição usam um **sistema de referência fixo** (canto sudoeste do mapa 25×25 original), então não mudam quando o mapa cresce.
 
 ## Antes de concluir uma tarefa
 - `dotnet build` sem erros nem warnings novos.
@@ -58,7 +58,9 @@ Unity/               Projeto Unity 6.3 URP — só apresentação, input, câmer
 
 ## Git
 - **Nunca commitar ou dar push sem aprovação explícita do Caio.**
-- Remote: `CaioAlexandreps02/Marte` no GitHub. **Neste PC** a conta do Caio usa a chave **`~/.ssh/id_ed25519_caio`** (as outras chaves são de outras contas: `id_ed25519` = MeuJudi, `vpt_github_new` = vptvolei-team, padrão do `~/.ssh/config`). O `origin` local está sem URL, então enviar pela URL:
-  `GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -i ~/.ssh/id_ed25519_caio -F /dev/null" git push git@github.com:CaioAlexandreps02/Marte.git main`
+- Remote: `git@github.com:CaioAlexandreps02/Marte.git`. **A chave SSH depende do PC** — antes de dar push, confira com `ssh -T git@github.com` qual conta responde:
+  - **PC de desenvolvimento (Xeon):** a conta do Caio usa **`~/.ssh/id_ed25519_caio`** (lá `id_ed25519` = MeuJudi, `vpt_github_new` = vptvolei-team). O `origin` está sem URL, então enviar pela URL:
+    `GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -i ~/.ssh/id_ed25519_caio -F /dev/null" git push git@github.com:CaioAlexandreps02/Marte.git main`
+  - **PC do trabalho (Ryzen 5600G):** `id_ed25519` **é** a conta CaioAlexandreps02 e o `origin` já está configurado → `git push` normal.
 - Não há `user.name`/`user.email` global: commitar com `git -c user.name="Caio" -c user.email="caioporto100@gmail.com" commit ...`.
 - Mapa gerado (tiles, ~1,4 GB) não vai para o Git: zip em Release do GitHub (`ferramentas/terreno/cache/marte-terreno-*.zip`).

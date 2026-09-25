@@ -11,144 +11,233 @@
   },
   "nivel_agua_m": -2560,
   "exagero_vertical": 2.0,
-  "inicio_alvo_km": [
-    11.0,
-    6.2
+  "_comentario_inicio": "Inicio do jogador (D16): exato, no pad de pouso da base B2 'Terraco do Lago', 150 m a oeste do centro (14,40; 13,55), olhando para a Mesa do Terraco. Coordenadas de referencia (km).",
+  "inicio_km": [
+    14.25,
+    13.5
   ],
   "area_jogavel_km": {
-    "_comentario": "Poligono onde o jogador pode andar (coordenadas de referencia). Oeste: meio da subida da borda da cratera, abrindo pouco para leste no norte (Caio). Norte: contorna a beirada sul do canyon (ver edicoes.json). Alem disso so visual.",
+    "_comentario": "D15: Variante A 'Delta + Leste' (~337 km2) + corredor de 300 m da Trilha do Mirante e circulo de 300 m no cume (+1,1 km2), coordenadas de referencia (km). Oeste: meio da subida da borda, com bolsao no vale do Neretva (Cheyava Falls). Norte em z = 21 (o canyon saiu da borda norte). Ver design/proposta-marcos-e-cavernas.md secoes 3 e 6.",
     "poligono": [
       [
         4.5,
-        0
+        2.8
       ],
       [
-        31,
-        0
-      ],
-      [
-        31,
-        25
-      ],
-      [
-        23.3,
-        25
-      ],
-      [
-        23.0,
-        23.575
-      ],
-      [
-        22.5,
-        23.575
-      ],
-      [
-        22.0,
-        22.675
-      ],
-      [
-        21.5,
-        23.097
-      ],
-      [
-        21.0,
-        23.087
-      ],
-      [
-        20.5,
-        23.36
-      ],
-      [
-        20.0,
-        23.371
-      ],
-      [
-        19.5,
-        23.373
-      ],
-      [
-        19.0,
-        23.386
-      ],
-      [
-        18.5,
-        23.412
-      ],
-      [
-        18.0,
-        22.846
-      ],
-      [
-        17.5,
-        23.148
-      ],
-      [
-        17.0,
-        23.247
-      ],
-      [
-        16.5,
-        23.251
+        13.8,
+        2.8
       ],
       [
         16.0,
-        23.237
+        6.8
       ],
       [
-        15.5,
-        23.225
+        19.5,
+        9.3
       ],
       [
-        15.0,
-        23.27
+        25.5,
+        7.8
       ],
       [
-        14.5,
-        23.269
+        29.2,
+        7.8
       ],
       [
-        14.0,
-        23.251
+        29.2,
+        12.0
       ],
       [
-        13.5,
-        23.575
+        26.6,
+        13.2
       ],
       [
-        13.0,
-        23.575
+        26.6,
+        21.0
       ],
       [
-        12.7,
-        25
-      ],
-      [
-        9.0,
-        25
-      ],
-      [
-        8.2,
-        22.5
+        7.7,
+        21.0
       ],
       [
         7.4,
-        20
+        20.0
       ],
       [
         6.5,
-        17
+        17.0
       ],
       [
         5.6,
-        14
+        14.0
+      ],
+      [
+        5.23,
+        12.68
+      ],
+      [
+        5.15,
+        12.68
+      ],
+      [
+        4.85,
+        12.4
+      ],
+      [
+        4.61,
+        12.64
+      ],
+      [
+        4.47,
+        12.7
+      ],
+      [
+        4.29,
+        12.88
+      ],
+      [
+        4.21,
+        12.92
+      ],
+      [
+        4.07,
+        12.92
+      ],
+      [
+        3.82,
+        12.79
+      ],
+      [
+        3.68,
+        12.53
+      ],
+      [
+        3.7,
+        12.31
+      ],
+      [
+        3.56,
+        12.09
+      ],
+      [
+        3.56,
+        11.95
+      ],
+      [
+        3.68,
+        11.73
+      ],
+      [
+        3.54,
+        11.59
+      ],
+      [
+        3.52,
+        11.39
+      ],
+      [
+        3.58,
+        11.27
+      ],
+      [
+        3.75,
+        11.16
+      ],
+      [
+        3.95,
+        11.18
+      ],
+      [
+        4.06,
+        11.27
+      ],
+      [
+        4.12,
+        11.39
+      ],
+      [
+        4.1,
+        11.59
+      ],
+      [
+        4.0,
+        11.71
+      ],
+      [
+        4.0,
+        11.87
+      ],
+      [
+        3.88,
+        11.99
+      ],
+      [
+        3.88,
+        12.03
+      ],
+      [
+        4.04,
+        12.31
+      ],
+      [
+        4.04,
+        12.45
+      ],
+      [
+        4.1,
+        12.49
+      ],
+      [
+        4.13,
+        12.6
+      ],
+      [
+        4.31,
+        12.44
+      ],
+      [
+        4.45,
+        12.38
+      ],
+      [
+        4.71,
+        12.12
+      ],
+      [
+        4.79,
+        12.08
+      ],
+      [
+        4.93,
+        12.08
+      ],
+      [
+        5.12,
+        12.21
       ],
       [
         4.8,
-        11
+        11.0
+      ],
+      [
+        4.7,
+        9.4
+      ],
+      [
+        3.2,
+        8.9
+      ],
+      [
+        3.3,
+        7.4
+      ],
+      [
+        4.6,
+        7.0
       ],
       [
         4.5,
-        5
+        5.0
       ]
     ]
   },
@@ -157,5 +246,6 @@
     "meia_largura_km": 50,
     "espacamento_m": 100,
     "ctx_margem_km": 8
-  }
+  },
+  "_comentario_tamanho": "Tiles continuam 28x25 (e nao 28x22 da proposta): os 3-4 km ao norte do limite ficam em alta resolucao no streaming (raio 2,5 km) e a referencia/cos(lat) nao muda. Ver README."
 }
