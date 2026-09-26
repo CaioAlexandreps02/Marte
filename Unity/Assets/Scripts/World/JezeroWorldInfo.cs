@@ -27,8 +27,12 @@ namespace Marte.World
         [Header("Gameplay")]
         public float waterY;
         public Vector3 start;
+        public float startYaw;
         [Tooltip("Where the player may walk (x, z from the map center). Beyond it the world is visual only.")]
         public Vector2[] playableArea;
+
+        [Tooltip("Named places from ferramentas/terreno/marcos.json (D15/D16), positioned on the imported terrain.")]
+        public Landmark[] landmarks;
 
         public float HalfX => tilesX * tileSize / 2f;
         public float HalfZ => tilesZ * tileSize / 2f;

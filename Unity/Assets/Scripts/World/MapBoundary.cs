@@ -12,11 +12,15 @@ namespace Marte.World
         [SerializeField] JezeroWorldInfo world;
         [SerializeField] float hardMargin = 300f;
         [SerializeField] float warnDistance = 900f;
+        [Tooltip("Landmark with a signal antenna: no weak-signal warning near it (the Mirante trail corridor, D15).")]
+        [SerializeField] string signalRelay = "mirante_sentinela";
+        [SerializeField] float relayRadius = 2000f;
 
         Vector2 lastValid;
         bool hasLastValid;
         bool atLimit;
         float distanceToLimit = float.MaxValue;
+        bool nearRelay;
         GUIStyle style;
 
         void LateUpdate()
@@ -45,6 +49,16 @@ namespace Marte.World
                 atLimit = true;
             }
             distanceToLimit = DistanceToLimit(p);
+            nearRelay = NearRelay(p);
+        }
+
+        bool NearRelay(Vector2 p)
+        {
+            if (world.landmarks == null) return false;
+            foreach (var l in world.landmarks)
+                if (l.id == signalRelay)
+                    return Vector2.Distance(p, new Vector2(l.position.x, l.position.z)) < relayRadius;
+            return false;
         }
 
         bool IsValid(Vector2 p)
@@ -84,7 +98,7 @@ namespace Marte.World
 
         void OnGUI()
         {
-            if (distanceToLimit > warnDistance && !atLimit) return;
+            if ((distanceToLimit > warnDistance || nearRelay) && !atLimit) return;
             style ??= new GUIStyle(GUI.skin.box) { fontSize = 20, alignment = TextAnchor.MiddleCenter, wordWrap = true };
             float strength = 1f - distanceToLimit / warnDistance;
             GUI.color = new Color(1f, 0.76f, 0.28f, 0.6f + 0.4f * strength);

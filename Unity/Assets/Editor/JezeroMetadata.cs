@@ -18,8 +18,14 @@ namespace Marte.EditorTools
         [Serializable] public class Start { public float x_m, z_m; public float y_mundo_com_exagero; }
         [Serializable] public class Height { public float min_codificado_m; public float faixa_m; }
         [Serializable] public class Backdrop { public string arquivo; public int amostras; public float espacamento_m, meia_largura_m, min_codificado_m, faixa_m; }
+        [Serializable] public class Reference { public float desloc_x_m, desloc_z_m; }
+
+        // ferramentas/terreno/marcos.json (reference-frame km coordinates).
+        [Serializable] public class Marco { public string id; public int numero; public string nome, tipo, origem, caverna, gelo, descricao; public float x_km, z_km; public bool visivel_de_longe; }
+        [Serializable] public class MarcoList { public Marco[] marcos; }
 
         public Grid grade;
+        public Reference referencia;
         public Height altura;
         public UnityInfo unity;
         public Water agua;
@@ -60,6 +66,16 @@ namespace Marte.EditorTools
             for (int i = 0; i < poly.Length; i++) poly[i] = new Vector2(nums[2 * i], nums[2 * i + 1]);
             return poly;
         }
+
+        public static Marco[] LoadMarcos()
+        {
+            string path = Path.Combine(Folder, "..", "marcos.json");
+            return File.Exists(path) ? JsonUtility.FromJson<MarcoList>(File.ReadAllText(path)).marcos ?? Array.Empty<Marco>() : Array.Empty<Marco>();
+        }
+
+        // Reference-frame km (edicoes/marcos) -> true position with the origin at the map center (y = 0).
+        public Vector3 ReferenceToWorld(float xKm, float zKm) =>
+            new Vector3(xKm * 1000f + referencia.desloc_x_m - HalfX, 0f, zKm * 1000f + referencia.desloc_z_m - HalfZ);
 
         public float HalfX => grade.tamanho_x_m / 2f;
         public float HalfZ => grade.tamanho_z_m / 2f;

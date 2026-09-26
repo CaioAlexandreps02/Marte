@@ -96,11 +96,68 @@ namespace Marte.EditorTools
             info.start = meta.StartWorld;
             info.playableArea = meta.playableArea;
             ImportBackdrop(meta, info);
+            ImportLandmarks(meta, info);
             EditorUtility.SetDirty(info);
             AssetDatabase.SaveAssets();
             EditorUtility.UnloadUnusedAssetsImmediate();
 
             Debug.Log($"[Marte] Jezero imported: {tilesX * tilesZ} streamable tiles ({tilesX}x{tilesZ} km) + horizon {hsx}x{hsz}, playable area {info.playableArea.Length} vertices.");
+        }
+
+        [MenuItem("Marte/Terrain/Import Landmarks Only")]
+        public static void ImportLandmarksOnly()
+        {
+            var info = AssetDatabase.LoadAssetAtPath<JezeroWorldInfo>(WorldInfoPath);
+            if (info == null)
+            {
+                Debug.LogError("[Marte] Run Marte/Terrain/Import Jezero first.");
+                return;
+            }
+            ImportLandmarks(JezeroMetadata.Load(), info);
+            EditorUtility.SetDirty(info);
+            AssetDatabase.SaveAssets();
+        }
+
+        // Start looks at this landmark (D16: from the landing pad toward the Terrace Mesa).
+        const string StartLookAt = "mesa_terraco";
+
+        // Places ferramentas/terreno/marcos.json on the terrain (height read from the RAW tiles) and sets the start heading.
+        static void ImportLandmarks(JezeroMetadata meta, JezeroWorldInfo info)
+        {
+            var marcos = JezeroMetadata.LoadMarcos();
+            int res = meta.unity.heightmap_resolution;
+            var buffer = new ushort[res * res];
+            var landmarks = new Landmark[marcos.Length];
+            for (int i = 0; i < marcos.Length; i++)
+            {
+                var m = marcos[i];
+                Vector3 p = meta.ReferenceToWorld(m.x_km, m.z_km);
+                int tx = Mathf.Clamp(Mathf.FloorToInt((p.x + meta.HalfX) / info.tileSize), 0, info.tilesX - 1);
+                int tz = Mathf.Clamp(Mathf.FloorToInt((p.z + meta.HalfZ) / info.tileSize), 0, info.tilesZ - 1);
+                ReadTile(Path.Combine(JezeroMetadata.Folder, $"Jezero_{tx}_{tz}.raw"), res, buffer);
+                float u = Mathf.Clamp((p.x - info.TileOrigin(tx, tz).x) / info.tileSize * (res - 1), 0, res - 1.001f);
+                float v = Mathf.Clamp((p.z - info.TileOrigin(tx, tz).z) / info.tileSize * (res - 1), 0, res - 1.001f);
+                int c = (int)u, r = (int)v;
+                float fu = u - c, fv = v - r;
+                float h = Mathf.Lerp(Mathf.Lerp(buffer[r * res + c], buffer[r * res + c + 1], fu),
+                                     Mathf.Lerp(buffer[(r + 1) * res + c], buffer[(r + 1) * res + c + 1], fu), fv);
+                p.y = h / 65535f * info.terrainHeight;
+                landmarks[i] = new Landmark
+                {
+                    id = m.id, number = m.numero, name = m.nome, type = m.tipo, origin = m.origem,
+                    cave = m.caverna ?? "", ice = m.gelo ?? "", visibleFromFar = m.visivel_de_longe,
+                    description = m.descricao, position = p,
+                };
+            }
+            info.landmarks = landmarks;
+
+            var target = Array.Find(landmarks, l => l.id == StartLookAt);
+            if (!string.IsNullOrEmpty(target.id))
+            {
+                Vector3 d = target.position - info.start;
+                info.startYaw = Mathf.Atan2(d.x, d.z) * Mathf.Rad2Deg;
+            }
+            Debug.Log($"[Marte] {landmarks.Length} landmarks placed; start faces {StartLookAt} ({info.startYaw:0} deg).");
         }
 
         [MenuItem("Marte/Terrain/Import Backdrop Only")]

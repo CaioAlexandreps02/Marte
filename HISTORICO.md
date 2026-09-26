@@ -99,3 +99,17 @@
   Destaques: tubo selado de cápsulas como "esteira", colônia leve, domos de gelo, janelas de lançamento, ciclo do
   hidrogênio, rovers elétricos, estações do ano, Limite de Armstrong, cavernas só para explorar.
 - Próximo: cruzar desejos × materiais; sessões novas (construção por planta, colônia leve, revisão D10).
+
+## 26/09/2026 — Mapa com os marcos (D15/D16) no Unity
+
+- Local atualizado com o GitHub (commits `7cb0c6a` D15/D16 e `65916de` D17, feitos em outra sessão).
+- Terreno **regenerado** com todas as edições novas: base central nivelada (inclinação mediana 0,8° no jogo, 62 m
+  acima da água), pad de pouso, Mesa do Terraço +45 m, Pico Farol, Mesas Estratificadas, 4 poços de colapso, canyon
+  das Fossas de Hefesto na diagonal (6,4 km), Trilha do Mirante (3,2 km, máx. 23,6° no jogo) e cume do Mirante.
+  Cache do stamp do canyon renomeado para o nome da fonte.
+- Unity: nova área jogável (55 pontos, com o corredor da trilha); **início no pad olhando para a Mesa do Terraço**;
+  **41 marcos** do `marcos.json` com poste e nome na tela (tecla M); aviso de sinal desligado perto da antena do
+  Mirante; olhos da câmera de 1,60 para **1,75 m** (o Caio achou a visão baixa).
+- **Correção:** a montagem da cena por script não marcava a cena como alterada, então "salvar" era ignorado e a cena
+  no Git estava desatualizada desde 24/09 22:50. `JezeroSceneSetup` agora marca a cena; cena salva de novo.
+- Pendente: cavernas, destroços, estação, drone etc. ainda são só marcadores (precisam de modelo); ver ROADMAP.

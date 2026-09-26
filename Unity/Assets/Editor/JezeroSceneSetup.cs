@@ -23,6 +23,7 @@ namespace Marte.EditorTools
 
             Replace("Jezero");
             Replace("World");
+            Replace("Landmarks");
             Replace("Water");
             Replace("Player");
             Replace("Main Camera");
@@ -30,7 +31,10 @@ namespace Marte.EditorTools
             CreateWater(meta, info);
             var player = CreatePlayer(meta, info);
             CreateWorld(info, player.transform);
+            CreateLandmarks(info);
             SetupFog();
+            // Objects created from code don't dirty the scene by themselves; without this, saving skips it.
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
             Debug.Log("[Marte] World (streaming), water, player and fog created.");
         }
 
@@ -47,6 +51,16 @@ namespace Marte.EditorTools
         }
 
         static readonly Color DustColor = new Color(0.89f, 0.77f, 0.60f);   // D12 horizon #E3C49A
+
+        static void CreateLandmarks(JezeroWorldInfo info)
+        {
+            var go = new GameObject("Landmarks");
+            go.SetActive(false);
+            var so = new SerializedObject(go.AddComponent<LandmarkMarkers>());
+            so.FindProperty("world").objectReferenceValue = info;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            go.SetActive(true);
+        }
 
         // Mars dust haze (D12). Also hides the switch between full tiles, horizon and backdrop.
         static void SetupFog()
@@ -115,6 +129,7 @@ namespace Marte.EditorTools
             Vector3 start = meta.StartWorld;
             var player = new GameObject("Player");
             player.transform.position = new Vector3(start.x, start.y + 1.1f, start.z);
+            player.transform.rotation = Quaternion.Euler(0f, info.startYaw, 0f);
 
             var controller = player.AddComponent<CharacterController>();
             controller.height = 1.8f;
@@ -123,7 +138,8 @@ namespace Marte.EditorTools
 
             var pivot = new GameObject("CameraPivot");
             pivot.transform.SetParent(player.transform, false);
-            pivot.transform.localPosition = new Vector3(0f, 0.7f, 0f);
+            // Eyes 1.75 m above the feet (capsule is 1.8 m, centred on the transform).
+            pivot.transform.localPosition = new Vector3(0f, 0.85f, 0f);
 
             var cameraGo = new GameObject("Main Camera") { tag = "MainCamera" };
             cameraGo.transform.SetParent(pivot.transform, false);

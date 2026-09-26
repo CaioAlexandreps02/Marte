@@ -14,7 +14,7 @@ Os tiles de terreno, o horizonte, o fundo e os materiais gerados **não estão n
    - **Marte → Scene → Setup World, Water and Player** — monta a cena (`Assets/Scenes/SampleScene.unity`).
 3. Salvar a cena.
 
-Outros menus: **Import Backdrop Only** (só o fundo), **Render Stamp Previews** (compara stamps de relevo).
+Outros menus: **Import Landmarks Only** (só os marcos, depois de mudar `marcos.json`), **Import Backdrop Only** (só o fundo), **Render Stamp Previews** (compara stamps de relevo).
 
 ## Controles (teste)
 
@@ -24,6 +24,7 @@ Outros menus: **Import Backdrop Only** (só o fundo), **Render Stamp Previews** 
 | Shift | correr (60 m/s — valor de teste para explorar) |
 | Espaço | pular |
 | **F** | liga/desliga **voo**: WASD na direção do olhar, Espaço sobe, Ctrl desce, Shift acelera (80 → 400 m/s) |
+| **M** | nomes dos marcos: próximos (3 km) → todos → esconder |
 | Esc / clique | solta / prende o mouse |
 
 ## Arquitetura do mundo (`Assets/Scripts/World/`)
@@ -34,9 +35,10 @@ Outros menus: **Import Backdrop Only** (só o fundo), **Render Stamp Previews** 
 | `TerrainStreamer` | No objeto **World** (raiz, na origem). Carrega tiles completos (`Resources/Terrain/Jezero/Jezero_x_z`) num raio de 2,5 km, com antecipação na direção do movimento, e descarrega a 3,2 km. Monta o **horizonte** (1 malha de 31 m por tile, some quando o tile carrega) e o **fundo** (100×100 km, só visual). Roda também fora do Play, em volta da câmera da aba Scene (objetos `DontSave`, nunca salvos na cena) |
 | `HorizonBuilder` | Gera as malhas do horizonte e do fundo, com "saia" nas bordas e normais contínuas entre pedaços |
 | `FloatingOrigin` | No jogador: a cada 1 km recentraliza todos os objetos raiz. Posição verdadeira = `FloatingOrigin.ToTrueWorld(pos)` |
-| `MapBoundary` | No jogador: mantém dentro do retângulo do mapa (−300 m) e do **polígono jogável**; desliza ao longo do limite; aviso "SINAL DA BASE FRACO" a menos de 900 m (OnGUI provisório) |
+| `MapBoundary` | No jogador: mantém dentro do retângulo do mapa (−300 m) e do **polígono jogável**; desliza ao longo do limite; aviso "SINAL DA BASE FRACO" a menos de 900 m (OnGUI provisório), **exceto a menos de 2 km da antena do Mirante** (corredor da trilha, D15) |
+| `LandmarkMarkers` + `Landmark` | Objeto **Landmarks**: um poste colorido por tipo em cada marco de `ferramentas/terreno/marcos.json` (41) e o nome com a distância na tela (tecla M). Na aba Scene os nomes aparecem sempre. Provisório até cavernas, destroços e estações ganharem modelo |
 
-`Assets/Scripts/Player/FirstPersonController.cs` — controle em 1ª pessoa (Input System).
+`Assets/Scripts/Player/FirstPersonController.cs` — controle em 1ª pessoa (Input System). Olhos a **1,75 m** do chão; o jogador nasce no pad de pouso olhando para a Mesa do Terraço (D16, `JezeroWorldInfo.startYaw`).
 `Assets/Shaders/MarsSky.shader` — céu em gradiente (paleta D12); a parte abaixo do horizonte tem a cor da névoa.
 
 ### Coordenadas
